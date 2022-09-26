@@ -159,7 +159,7 @@ We can use non-strict boolean operators `&&` (and), `||` (or), and `!` (not) to 
 Returns the right-hand side value if the left-hand side value is truthy.
 
 ```elixir
-1 && 2
+1 && nil && false
 ```
 
 Returns the left-hand side value if it is falsy.
@@ -177,7 +177,7 @@ false && 2
 Returns the first truthy value on either the left-hand side or the right-hand side.
 
 ```elixir
-2 || nil
+false || nil || 3
 ```
 
 ```elixir

@@ -524,7 +524,7 @@ if it matches any of the cases. It then executes the first case that matches.
 ````elixir
 frames = [
   "
-We create a case statement.
+ew create a case statement.
 ```elixir
 case \"snowy\" do
   \"sunny\" -> \"wear a t-shirt\"
