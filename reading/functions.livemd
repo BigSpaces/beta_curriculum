@@ -270,8 +270,9 @@ You can use <code>rem</code> to determine if an integer is even with <code>rem(i
 </details>
 
 ```elixir
-is_even? = nil
-
+is_even? = fn number -> rem(number, 2) == 0 && true end
+## How can we inspect this function to see what it returns when passing a parameter?
+## IO.inspect(is_even?(2))
 Utils.feedback(:is_even?, is_even?)
 ```
 
@@ -322,7 +323,7 @@ Create a multi-parameter `calculate_force/2` function.
 Replace `nil` with your anonymous function.
 
 ```elixir
-calculate_force = nil
+calculate_force = fn mass, acceleration -> mass * acceleration end
 
 Utils.feedback(:calculate_force, calculate_force)
 ```
@@ -357,8 +358,7 @@ Using shorthand syntax, create a `calculate_force` function which multiplies `ma
 Replace `nil` with your answer.
 
 ```elixir
-calculate_force = nil
-
+calculate_force = &(&1 * &2)
 Utils.feedback(:calculate_force, calculate_force)
 ```
 
@@ -390,6 +390,10 @@ in the anonymous function directly.
 ```elixir
 call_twice.(fn number -> number * 2 end, 5)
 ```
+
+<h4>
+Oh please walk me through this
+</h4>
 
 Whenever you pass a function into a higher-order function with the
 expectation that the higher-order function is going to call it, the passed function is
@@ -503,7 +507,7 @@ add = fn int1, int2 -> int1 + int2 end
 multiply = fn int1, int2 -> int1 * int2 end
 subtract = fn int1, int2 -> int1 - int2 end
 
-answer = nil
+answer = add.(10, 2) |> multiply.(5) |> subtract.(4)
 
 Utils.feedback(:pipe_operator, answer)
 ```
