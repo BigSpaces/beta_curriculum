@@ -97,7 +97,11 @@ In the Elixir cell below, create a `Math` module with a function `add` that adds
 together.
 
 ```elixir
-
+defmodule Math do
+  def add(1, 2) do
+    1 + 2
+  end
+end
 ```
 
 ## Internal Module Functions
@@ -202,6 +206,10 @@ Speaker.speak()
 
 ## Namespaces
 
+<h3>
+Question! Do we define a Namespace or is it a name we give to the main module? I do not quite understand the difference between a Namespace and a Module. Is convention to have the module defined first, and then define the submodule, or is it ok to jump ahead defining both at the same time?
+</h3>
+
 You can use modules to organize functions under a single **namespace**.
 This allows you to create many unique namespaces with their own functions to organize
 the functionality of your program.
@@ -250,13 +258,13 @@ flowchart
 To do this you can nest modules with a period `.`.
 
 ```elixir
-defmodule MyModule.SubModule do
+defmodule MyNewModule.NewSubModule do
   def my_function do
     "my return value"
   end
 end
 
-MyModule.SubModule.my_function()
+MyNewModule.NewSubModule.my_function()
 ```
 
 ### Your Turn
@@ -264,10 +272,28 @@ MyModule.SubModule.my_function()
 In the Elixir cell below, create two submodules under as single namespace.
 
 ```elixir
+defmodule Namespace.Submodule1 do
+end
 
+defmodule Namespace.Submodule2 do
+end
+
+# OR
+
+defmodule Namespace2 do
+  defmodule Namespace2.Submodule1 do
+  end
+
+  defmodule Namespace2.Submodule2 do
+  end
+end
 ```
 
 ## Module Attributes
+
+<h3>
+Is this what was called "global variables or constants" in other programming languages?
+</h3>
 
 What if you have many functions in a module that all use the same value? You've already learned
 that repeating the same hard-coded value over and over again isn't very reusable, and you've
@@ -349,6 +375,10 @@ MyModule.my_function()
 ```
 
 We can also access a variable in the top-level scope as long as we set a module attribute.
+
+<h3>
+QUESTION:
+</h3>
 
 ```elixir
 top_level_variable = 1
@@ -435,7 +465,15 @@ Create a `Math` module with `add/2` and `add/3` functions. Each should add all o
 together.
 
 ```elixir
+defmodule Math do
+  def add(1, 2) do
+    1 + 2
+  end
 
+  def add(1, 2, 3) do
+    1 + 2 + 3
+  end
+end
 ```
 
 ## Default Arguments
@@ -445,12 +483,12 @@ You can provide default arguments to functions using the `\\` syntax after the p
 
 ```elixir
 defmodule Greeter do
-  def greet(name, greeting \\ "Hello") do
+  def greet(name \\ "Bob", greeting \\ "Hello") do
     "#{greeting} #{name}!"
   end
 end
 
-Greeter.greet("Peter")
+Greeter.greet()
 ```
 
 Then if desired, you can override the default value.
@@ -495,7 +533,13 @@ Greeter.greet("HI")
 In the Elixir cell below, define a module with a function that uses a default argument.
 
 ```elixir
+defmodule SuperModule do
+  def superfunction(name \\ "Bob", feeling \\ "Exhausted") do
+    "#{name} is #{feeling}"
+  end
+end
 
+SuperModule.superfunction("Susie", "flirty")
 ```
 
 ## Commit Your Progress
