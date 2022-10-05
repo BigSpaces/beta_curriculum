@@ -79,7 +79,20 @@ defmodule WeightedVoting do
     iex> WeightedVoting.count([cats: 10, dogs: 20, dogs: 10, cats: 30], :cats)
     40
   """
+
+  # input: keyword list & a key
+  # output: a number -> the total number of votes for such key
+  # The problem -> account for the values of such key, ignore the values of other keys
+  # and add to the accumulator
+
   def count(votes, vote_to_count) do
+    Enum.reduce(votes, 0, fn {key, value}, acc ->
+      if key == :cats do
+        acc = acc + value
+      else
+        acc
+      end
+    end)
   end
 
   @doc """
@@ -97,9 +110,41 @@ defmodule WeightedVoting do
     iex> WeightedVoting.tally([cats: 10, dogs: 20, cats: 20, dogs: 10, birds: 20])
     [birds: 20, cats: 30, dogs: 30]
   """
+
+  # input: keyword list with animal: votes
+  # output: keyword list with animal: total votes, in alphabetical order
+  # solution: 
+  # check the item
+  # if it already exists in the final keyword list, add the number of votes
+  # if it doesn't exist, add a new key and value
+  # when finished with reading, order alphabetically
+  # return
+
   def tally(votes) do
+    Enum.reduce(votes, [], fn {animal, number}, new_list ->
+      if(Enum.member?(new_list, animal))
+
+      List.replace_at(new_list, index, {animal, value})
+    end)
+
+    # List.keysort(final_list, 0, :asc) - This works but is out of scope 
   end
 end
+
+WeightedVoting.count([cats: 10, dogs: 20, dogs: 10, cats: 30], :cats)
+```
+
+```elixir
+# def tally(votes) do
+#   Enum.reduce(votes, [], fn {animal, number}, final_list -> 
+#     final_list = [{animal, number} | final_list ]
+
+#   end)
+#   
+#   end
+# end
+
+WeightedVoting2.tally(cats: 10, dogs: 20, cats: 20, dogs: 10, birds: 20)
 ```
 
 ## Commit Your Progress
