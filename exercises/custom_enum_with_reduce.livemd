@@ -79,6 +79,10 @@ defmodule CustomEnum do
     [7, 6, 5, 4]
   """
   def reverse(list) do
+    Enum.reduce(list, [] fn each, acc -> [each | acc]  end ) ## Copied from the solutions :( 
+      ## List.insert_at(acc, 0, item) <- I was trying this... didn't work
+      ## I do not understand the inner workings of using reduce with or without []
+      ## reduce(list, fn each, acc -> [each | acc] <-- Why doesn't this work??
   end
 
   @doc """
@@ -138,6 +142,12 @@ defmodule CustomEnum do
   def join(list_of_strings) do
   end
 end
+
+CustomEnum.reverse([1, 2, 3])
+```
+
+```elixir
+Enum.reduce([1, 2, 3], fn item, acc -> IO.puts(acc) end)
 ```
 
 ## Commit Your Progress
