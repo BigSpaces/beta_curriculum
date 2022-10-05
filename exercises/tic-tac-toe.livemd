@@ -162,11 +162,17 @@ defmodule TicTacToe do
   # first pull the row
   # second, pull the column from the selected row and we have our cell
 
-  def at(board, coordinate) do
-    board = Enum.reverse(board)
-    {x, y} = coordinate
-    row = Enum.at(board, y)
-    Enum.at(row, x)
+  def at(board, {x, y}) do
+    board
+    |> Enum.reverse()
+    |> Enum.at(y)
+    |> Enum.at(x)
+
+    # Old solution
+    #  board = Enum.reverse(board)
+    # {x, y} = coordinate
+    # row = Enum.at(board, y)
+    # Enum.at(row, x)
   end
 
   @doc """
@@ -196,19 +202,37 @@ defmodule TicTacToe do
   # update the column (index number) of that list
   # update the original list 
 
-  def fill(board, coordinate, symbol) do
-    {x, y} = coordinate
+  def fill(board, {x, y}, symbol) do
+    # reverses the board
     board = Enum.reverse(board)
+    # brings the list corresponding to the row in coordinates (y)
     row = Enum.at(board, y)
-    new_row = List.update_at(row, x, &(&1 = symbol))
-    List.update_at(board, y, &(&1 = new_row))
-    Enum.reverse(board)
+    # replaces the cell in the row and rebinds
+    new_row = List.replace_at(row, x, symbol)
+    # replaces the row in the board and rebinds
+    new_board = List.replace_at(board, y, new_row)
+    # reverses
+    Enum.reverse(new_board)
   end
 end
 
 board = [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]]
 
 TicTacToe.fill([[nil, "X", nil], [nil, "X", "O"], [nil, nil, "X"]], {2, 2}, "O")
+```
+
+```elixir
+## Attempts to recreate fill with pipes...
+
+defmodule TicTacToe2 do
+  def fill(board, {x, y}, symbol) do
+    board
+    |> Enum.reverse()
+    |> Enum.at(y)
+    |> List.replace_at(x, symbol)
+    |> List.replace_at(y, new_row)
+  end
+end
 ```
 
 ## Commit Your Progress
