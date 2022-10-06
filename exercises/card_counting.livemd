@@ -191,9 +191,9 @@ Enum.reduce(card_list, 0, fn card, acc ->
   IO.inspect(card)
 
   cond do
-    card < 7 -> acc = acc - 1
-    card > 9 -> acc = acc + 1
-    true -> acc = acc
+    card < 7 -> acc - 1
+    card > 9 -> acc + 1
+    true -> acc
   end
 end)
 ```
