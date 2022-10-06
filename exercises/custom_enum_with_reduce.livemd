@@ -78,11 +78,13 @@ defmodule CustomEnum do
     iex> CustomEnum.reverse([4, 5, 6, 7])
     [7, 6, 5, 4]
   """
+
   def reverse(list) do
-    Enum.reduce(list, [] fn each, acc -> [each | acc]  end ) ## Copied from the solutions :( 
-      ## List.insert_at(acc, 0, item) <- I was trying this... didn't work
-      ## I do not understand the inner workings of using reduce with or without []
-      ## reduce(list, fn each, acc -> [each | acc] <-- Why doesn't this work??
+    ## Copied from the solutions :( 
+    Enum.reduce(list, [], fn each, acc -> [each | acc] end)
+    ## List.insert_at(acc, 0, item) <- I was trying this... didn't work
+    ## I do not understand the inner workings of using reduce with or without []
+    ## reduce(list, fn each, acc -> [each | acc] <-- Why doesn't this work??
   end
 
   @doc """
@@ -96,7 +98,14 @@ defmodule CustomEnum do
     iex> CustomEnum.map([5, 4, 3], fn integer -> is_integer(integer) end)
     [true, true, true]
   """
+
+  # def map(list, callback_function) do
+  #   Enum.reduce(list, [], fn each, acc -> acc ++ callback_function.(each) end)
+  # end
+
   def map(list, callback_function) do
+    Enum.reduce(list, [], fn each, acc -> [callback_function.(each) | acc] end)
+    |> Enum.reverse()
   end
 
   @doc """
@@ -112,6 +121,14 @@ defmodule CustomEnum do
     ["2", "3"]
   """
   def filter(list, callback_function) do
+    Enum.reduce(list, [], fn each, acc ->
+      if callback_function.(each) do
+        [each | acc]
+      else
+        acc
+      end
+    end)
+    |> Enum.reverse()
   end
 
   @doc """
@@ -126,6 +143,7 @@ defmodule CustomEnum do
     3
   """
   def sum(list_of_integers) do
+    Enum.reduce(list_of_integers, 0, fn each, acc -> each + acc end)
   end
 
   @doc """
@@ -140,14 +158,63 @@ defmodule CustomEnum do
     "Hello, World!"
   """
   def join(list_of_strings) do
+    Enum.reduce(list_of_strings, fn each, acc -> "#{acc}#{each}" end)
   end
 end
 
-CustomEnum.reverse([1, 2, 3])
+CustomEnum.join(["Hello", ",", " ", "World", "!"])
 ```
 
 ```elixir
-Enum.reduce([1, 2, 3], fn item, acc -> IO.puts(acc) end)
+defmodule PassingFunctions do
+  def test(callback_function) do
+    callback_function.()
+  end
+
+  def creatinglist() do
+  end
+end
+
+PassingFunctions.test(fn -> "lalala" end)
+```
+
+```elixir
+list = [1, 2, 3, 4]
+
+# Step1 input 1
+# Step1 output [1]
+# Step1 acc [1]
+
+step1 = Enum.reduce(list, [], fn each, acc -> [each | acc] end)
+Enum.reverse(step1)
+```
+
+```elixir
+# Filtering
+list = ["1", 2, "blabla", :smile]
+filter = is_bitstring()
+# INPUT is a list
+# OUTPUT is a filtered list
+
+# for this example, the filter will be "is string"
+# step1 acc is []
+# step1 first element is "1"
+# step1 output is ["1"]
+acc = []
+step1 = "1"
+# if first element is a string, add first element to acc
+acc =
+  if filter.(step1) do
+    [step1 | acc]
+  end
+
+# step2 acc is ["1"]
+# step2 element is 2
+# step2 output is ["1"]
+
+# step2 = "2"
+# acc = if is_bitstring(step2) do [step2 | acc] else acc end
+# IO.inspect(acc)
 ```
 
 ## Commit Your Progress
