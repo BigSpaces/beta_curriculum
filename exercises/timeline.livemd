@@ -17,7 +17,7 @@ Mix.install([
 ## Timeline
 
 You are building an application which creates a timeline of events.
-Users provide you with a list of [Date](https://hexdocs.pm/elixir/Date.html)s. You will provide the number of days between each date.
+Users provide you with a list of [Dates](https://hexdocs.pm/elixir/Date.html). You will provide the number of days between each date.
 
 <!-- livebook:{"force_markdown":true} -->
 
@@ -96,12 +96,36 @@ defmodule Timeline do
     [9, 12, 2]
   """
   def from_dates(dates) do
-    Enum.chunk_every(dates, 2, 1, :discard)
-    |> Enum.map(fn chunk ->
-      [start, finish] = chunk
-      Date.diff(finish, start)
-    end)
+    differences =
+      Enum.reduce(dates, 0, fn current_date, acc ->
+        counter = 0
+
+        if acc == 0 do
+          []
+        else
+          counter = counter + 1
+          previous_date = Enum.at(dates, counter - 1)
+
+          IO.inspect(
+            "When the index is #{counter}, current date is #{current_date} and previous is #{previous_date}"
+          )
+
+          [Date.diff(current_date, previous_date) | acc]
+        end
+      end)
+
+    Enum.reverse(differences)
   end
+
+  ##### ####### ######## ######## This code was in the cell... ##### ##### ######
+
+  # def from_dates(dates) do
+  #   Enum.chunk_every(dates, 2, 1, :discard)
+  #   |> Enum.map(fn chunk ->
+  #     [start, finish] = chunk
+  #     Date.diff(finish, start)
+  #   end)
+  # end
 
   @doc """
   Given a list of "YYYY-MM-DD" strings return a timeline of days between each date.
@@ -129,6 +153,68 @@ defmodule Timeline do
     Date.new!(String.to_integer(year), String.to_integer(month), String.to_integer(day))
   end
 end
+
+Timeline.from_dates([~D[2020-01-01], ~D[2020-01-02], ~D[2020-01-22]])
+```
+
+```elixir
+# INPUT - List of dates
+# OUTPUT - List of days between events
+# Problem / Solution
+# Step 1 - Find the difference between two dates in days - Date.diff - Most recent day first
+
+date1 = ~D[2020-01-01]
+date2 = ~D[2020-01-02]
+
+Date.diff(date2, date1)
+
+# Step2 - Create a list with the differences
+# INPUT: List of dates
+# OUTPUT: List of differences in days
+# Problem - Solution: 
+# Get the second element of the list and subtract from the first
+
+dates = [~D[2020-01-01], ~D[2020-01-02], ~D[2020-01-22]]
+[previous | _] = dates
+current = Enum.at(dates, 1)
+acc = [Date.diff(current, previous)]
+
+# Step3 - Get the third element of the list and subtract from the second
+# Add the result to the previous result on a list
+previous = current
+current = Enum.at(dates, 2)
+[Date.diff(current, previous) | acc]
+
+# Timeline.from_dates(dates)
+# [1, 20]
+```
+
+```elixir
+dates = [~D[2020-01-01], ~D[2020-01-02], ~D[2020-01-22], ~D[2020-01-26]]
+
+differences =
+  Enum.reduce(dates, 0, fn current_date, acc ->
+    counter = 0
+
+    if acc == 0 do
+      []
+    else
+      counter = counter + 1
+      previous_date = Enum.at(dates, counter - 1)
+      [Date.diff(current_date, previous_date) | acc]
+    end
+  end)
+
+Enum.reverse(differences)
+```
+
+```elixir
+
+```
+
+```elixir
+# Mix.install([{:timex, "~> 3.0"}])
+use Timex
 ```
 
 ## Commit Your Progress
