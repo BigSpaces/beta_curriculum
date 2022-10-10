@@ -211,7 +211,7 @@ String.graphemes("é")
 Use [String.graphemes/1](https://hexdocs.pm/elixir/String.html#graphemes/1) to convert the [woman fire fighter](https://emojipedia.org/woman-firefighter/) emoji 👩‍🚒 to a list of graphemes.
 
 ```elixir
-
+String.graphemes("👩‍🚒")
 ```
 
 Use [String.codepoints/1](https://hexdocs.pm/elixir/String.html#codepoints/1) to convert the emoji 👩‍🚒 into a list of codepoints. You'll notice it's actually a combination of the 👩 and 🚒 emojis.
@@ -309,7 +309,7 @@ Use hexadecimal `0x` syntax to represent the number `15`.
 </details>
 
 ```elixir
-
+0xF
 ```
 
 ## Bitstrings
@@ -362,6 +362,10 @@ This charlist is equivalent to a list of the code points for a string.
 [?h, ?e, ?l, ?l, ?o]
 ```
 
+```elixir
+
+```
+
 Charlists are a list of integers, so they can be enumerated through and will return a new
 charlist. Here's how we could shift each character up one code point.
 
@@ -409,7 +413,8 @@ Convert the alphabet `"abcdefghijklmnopqrstuvwxyz"` to a charlist, then inspect 
 </details>
 
 ```elixir
-
+chrlst = String.to_charlist("abcdefghijklmnopqrstuvwxyz")
+Enum.map(chrlst, fn each -> IO.inspect(each, charlists: :as_lists) end)
 ```
 
 ## Commit Your Progress
