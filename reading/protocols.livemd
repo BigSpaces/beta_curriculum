@@ -186,7 +186,13 @@ end
 </details>
 
 ```elixir
+defimpl Adder, for: List do
+  def add(list1, list2) do
+    list1 ++ list2
+  end
+end
 
+Adder.add([1, 2, 3], [4, 5, 6])
 ```
 
 ## Protocols With Structs
@@ -238,7 +244,7 @@ Sound.say(%Cat{mood: :angry})
 
 ```elixir
 defmodule Dog do
-  defstruct []
+  defstruct [:type]
 end
 ```
 
@@ -266,7 +272,17 @@ end
 </details>
 
 ```elixir
+defimpl Sound, for: Dog do
+  def say(animal) do
+    case animal.type do
+      :giant -> "Woooooooooooooof!"
+      :normal -> "Wooooof"
+      :confused -> "Meow"
+    end
+  end
+end
 
+Sound.say(%Dog{type: :confused})
 ```
 
 ## Commit Your Progress
