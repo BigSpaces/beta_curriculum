@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -51,25 +50,16 @@ defmodule AnagramSolver do
 end
 ```
 
-### Validate Your Solution
-
-To validate your solution, ensure the following matches the expected output above. The order of anagrams does not matter.
-
-```elixir
-AnagramSolver.solve("cat")
-```
-
 ## Commit Your Progress
 
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-anagram_solver
 $ git add .
 $ git commit -m "finish anagram solver exercise"
+$ git push origin exercise-anagram_solver
 ```
 
-## Up Next
-
-| Previous                                   | Next                                               |
-| ------------------------------------------ | -------------------------------------------------: |
-| [Factorial](../exercises/factorial.livemd) | [Big O Notation](../reading/big_o_notation.livemd) |
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.

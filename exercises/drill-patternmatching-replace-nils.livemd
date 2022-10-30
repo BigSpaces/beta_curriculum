@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -34,7 +33,6 @@ This is a *drill* exercise:
 In this particular iteration of this problem, the goal is
 to practise writing/using functions with pattern matching
 in the functions' heads.
-
 
 To develop familiarity with functions and pattern matching,
 you will replace `nil` values in a list with values from a
@@ -143,12 +141,11 @@ end
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-drill-patternmatching-replace-nils
 $ git add .
-$ git commit -m "finish saferange exercise"
+$ git commit -m "finish drill-patternmatching-replace-nils exercise"
+$ git push origin exercise-drill-patternmatching-replace-nils
 ```
 
-## Up Next
-
-| Previous                                 | Next                           |
-| ---------------------------------------- | -----------------------------: |
-| [Metric Conversion](../exercises/metric_conversion.livemd) | [Guards](../reading/guards.livemd) |
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.

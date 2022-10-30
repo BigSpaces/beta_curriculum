@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -114,12 +113,17 @@ Test your solution by uncommenting and executing the code below.
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-kitchen_queue
 $ git add .
 $ git commit -m "finish kitchen queue exercise"
+$ git push origin exercise-kitchen_queue
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 
-| Previous                                                                       | Next                                   |
-| ------------------------------------------------------------------------------ | -------------------------------------: |
-| [Concurrent Image Processing](../exercises/concurrent_image_processing.livemd) | [HTML CSS](../reading/html_css.livemd) |
+| Previous                                       | Next                           |
+| ---------------------------------------------- | -----------------------------: |
+| [Smart Cache](../exercises/smart_cache.livemd) | [File](../reading/file.livemd) |

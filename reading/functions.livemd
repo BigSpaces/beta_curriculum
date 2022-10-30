@@ -5,8 +5,7 @@ Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
   {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:smart_animation, github: "brooklinjazz/smart_animation"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:smart_animation, github: "brooklinjazz/smart_animation"}
 ])
 ```
 
@@ -628,9 +627,14 @@ Enter your solution below.
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-functions
 $ git add .
 $ git commit -m "finish functions section"
+$ git push origin exercise-functions
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 

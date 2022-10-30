@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -50,12 +49,6 @@ mix new bomb_defusal --sup
 
 <!-- livebook:{"break_markdown":true} -->
 
-Evaluate the cell below to ensure you have correctly created the project.
-
-```elixir
-Utils.feedback(:created_project, "bomb_defusal")
-```
-
 Dialyzer, Credo, and ExDoc are optional for this project.
 
 ## Create the Bomb GenServer
@@ -99,6 +92,11 @@ the application supervisor.
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-bomb_defusal
 $ git add .
 $ git commit -m "finish bomb defusal exercise"
+$ git push origin exercise-bomb_defusal
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.

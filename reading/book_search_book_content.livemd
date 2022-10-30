@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -665,7 +664,7 @@ $ mix test
 
 We want to ensure our book contains a large amount of data. We can use the [Faker](https://github.com/elixirs/faker) library to generate large amounts of fake text.
 
-Add [Faker](https://hexdocs.pm/elixir/Faker.html) to our list of dependencies.
+Add [Faker](https://hexdocs.pm/faker/readme.html) to our list of dependencies.
 
 <!-- livebook:{"force_markdown":true} -->
 
@@ -789,9 +788,14 @@ In your seed file, change the size of `:content` in `:book_contents` to be signi
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-book_search_book_content
 $ git add .
 $ git commit -m "finish book search book content section"
+$ git push origin exercise-book_search_book_content
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 

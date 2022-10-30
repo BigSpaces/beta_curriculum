@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -77,12 +76,17 @@ You can use https://picsum.photos/200/100 to retrieve a fake image:
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-tailwind_css_components
 $ git add .
 $ git commit -m "finish tailwind css components exercise"
+$ git push origin exercise-tailwind_css_components
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 
-| Previous                                       | Next                                                 |
-| ---------------------------------------------- | ---------------------------------------------------: |
-| [Tailwind CSS](../reading/tailwind_css.livemd) | [Portfolio Mock](../exercises/portfolio_mock.livemd) |
+| Previous                                       | Next                                   |
+| ---------------------------------------------- | -------------------------------------: |
+| [Tailwind CSS](../reading/tailwind_css.livemd) | [LiveView](../reading/liveview.livemd) |

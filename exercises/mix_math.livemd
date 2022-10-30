@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -40,12 +39,6 @@ mix new math
 ```
 
 <!-- livebook:{"break_markdown":true} -->
-
-Evaluate the cell below to ensure you have correctly created the project.
-
-```elixir
-Utils.feedback(:created_project, "math")
-```
 
 ## Configure Dialyzer
 
@@ -364,6 +357,11 @@ raise a [FunctionClauseError](https://hexdocs.pm/elixir/FunctionClauseError.html
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-mix_math
 $ git add .
 $ git commit -m "finish mix math exercise"
+$ git push origin exercise-mix_math
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.

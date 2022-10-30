@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -50,12 +49,11 @@ Use [Trello](https://trello.com/) or some other Kanban application such as a [Gi
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-capstone_project_mock
 $ git add .
 $ git commit -m "finish capstone project mock exercise"
+$ git push origin exercise-capstone_project_mock
 ```
 
-## Up Next
-
-| Previous                                             | Next                                   |
-| ---------------------------------------------------- | -------------------------------------: |
-| [Portfolio Mock](../exercises/portfolio_mock.livemd) | [LiveView](../reading/liveview.livemd) |
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.

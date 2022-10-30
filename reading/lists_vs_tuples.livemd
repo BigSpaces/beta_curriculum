@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -84,7 +83,7 @@ perfect, so you may notice that execution time is not always consistent.
 Tuples are fixed-size containers, so their length is known upfront. It's a constant $O(1)$
 time to determine the size of a tuple no matter how large.
 
-For Lists, we only know the location of the first element. So, we need to traverse the entire
+For lists, we only know the location of the first element. So, we need to traverse the entire
 list to find its length.
 That means it takes $O(n)$ time where $n$ is the number of elements in the list.
 
@@ -586,12 +585,17 @@ Operations with tuples and lists will have the following Big $O$ notation.
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-lists_vs_tuples
 $ git add .
 $ git commit -m "finish lists vs tuples section"
+$ git push origin exercise-lists_vs_tuples
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 
-| Previous                             | Next                                                                       |
-| ------------------------------------ | -------------------------------------------------------------------------: |
-| [Streams](../reading/streams.livemd) | [Maps MapSets Keyword Lists](../reading/maps_mapsets_keyword_lists.livemd) |
+| Previous                                                         | Next                                                                       |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------: |
+| [Lazy Product Filters](../exercises/lazy_product_filters.livemd) | [Maps MapSets Keyword Lists](../reading/maps_mapsets_keyword_lists.livemd) |

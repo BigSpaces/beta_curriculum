@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -93,7 +92,7 @@ This `:mod` key defines the args value when the `RockPaperScissors.Application.s
 ## Starting Our Application
 
 The `RockPaperScissors.Application.start/2` function is called when we run the project, and
-the `:mod` value in `Utils.MixProject` defines second value.
+the `:mod` value in `application/0` defines the `args` argument value.
 
 Let's prove that. Add an [IO.puts/2](https://hexdocs.pm/elixir/IO.html#puts/2) message in the `start/2` function. We'll also remove the comments
 for the sake of conciseness, but you can leave them in if you prefer.
@@ -387,12 +386,17 @@ so we can keep playing. That's the definition of fault-tolerance!
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-supervised_mix_project
 $ git add .
 $ git commit -m "finish supervised mix project section"
+$ git push origin exercise-supervised_mix_project
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 
-| Previous                                     | Next                                                     |
-| -------------------------------------------- | -------------------------------------------------------: |
-| [Supervisors](../reading/supervisors.livemd) | [Supervised Stack](../exercises/supervised_stack.livemd) |
+| Previous                                       | Next                                                       |
+| ---------------------------------------------- | ---------------------------------------------------------: |
+| [Typing Game](../exercises/typing_game.livemd) | [Testing GenServers](../reading/testing_genservers.livemd) |

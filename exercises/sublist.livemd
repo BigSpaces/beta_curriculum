@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -24,7 +23,7 @@ of a given size.
 ```elixir
 iex(1)> list = [1, 1, 2, 3, 1, 4, 2]
 [1, 1, 2, 3, 1, 4, 2]
-iex(2)> Sublists.sublists(list, 3)
+iex(2)> Sublist.sublists(list, 3)
 [[1, 1, 2], [1, 2, 3], [2, 3, 1], [3, 1, 4], [1, 4, 2]]
 ```
 
@@ -32,12 +31,18 @@ iex(2)> Sublists.sublists(list, 3)
 
 ```elixir
 defmodule Sublist do
+  @doc ~S"""
+  Returns all consecutive sublists of `list` of the given `size`.
+
+  ## Examples
+
+      iex> Sublist.sublists([1, 1, 2, 3, 1, 4, 2], 3)
+      [[1, 1, 2], [1, 2, 3], [2, 3, 1], [3, 1, 4], [1, 4, 2]]
+
+  """
   def sublists(list, size) do
-    list
   end
 end
-
-Utils.feedback(:sublist, Sublist)
 ```
 
 [Return Home](../start.livemd)<span style="padding: 0 30px"></span>
@@ -48,12 +53,11 @@ Utils.feedback(:sublist, Sublist)
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-sublist
 $ git add .
 $ git commit -m "finish sublist exercise"
+$ git push origin exercise-sublist
 ```
 
-## Up Next
-
-| Previous                                                 | Next                           |
-| -------------------------------------------------------- | -----------------------------: |
-| [Pascals Triangle](../exercises/pascals_triangle.livemd) | [File](../reading/file.livemd) |
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.

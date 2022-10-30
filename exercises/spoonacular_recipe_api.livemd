@@ -5,8 +5,7 @@ Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
   {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:httpoison, "~> 1.8"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:httpoison, "~> 1.8"}
 ])
 ```
 
@@ -38,12 +37,17 @@ Use [HTTPoison](https://hexdocs.pm/httpoison/HTTPoison.html) to retrieve the sam
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-spoonacular_recipe_api
 $ git add .
 $ git commit -m "finish spoonacular recipe api exercise"
+$ git push origin exercise-spoonacular_recipe_api
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 
-| Previous                                               | Next                                           |
-| ------------------------------------------------------ | ---------------------------------------------: |
-| [Public Chat API](../exercises/public_chat_api.livemd) | [Pokemon API](../exercises/pokemon_api.livemd) |
+| Previous                       | Next                                           |
+| ------------------------------ | ---------------------------------------------: |
+| [APIs](../reading/apis.livemd) | [Pokemon API](../exercises/pokemon_api.livemd) |

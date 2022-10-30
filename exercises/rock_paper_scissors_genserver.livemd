@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -146,12 +145,11 @@ end
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-rock_paper_scissors_genserver
 $ git add .
 $ git commit -m "finish rock paper scissors genserver exercise"
+$ git push origin exercise-rock_paper_scissors_genserver
 ```
 
-## Up Next
-
-| Previous                                                         | Next                                                 |
-| ---------------------------------------------------------------- | ---------------------------------------------------: |
-| [Traffic Light Server](../exercises/traffic_light_server.livemd) | [Pokemon Server](../exercises/pokemon_server.livemd) |
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.

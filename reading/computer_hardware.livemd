@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -35,6 +34,8 @@ as you build software, those are your main performance concerns.
 
 It's not within the scope of the course to provide an indepth understanding of computers and computer hardware.
 Here's a great primer by Tom Scott to understand more about what your computer is doing under the hood.
+
+<!-- livebook:{"attrs":{"source":"YouTube.new(\"https://www.youtube.com/watch?v=Z5JC9Ve1sfI\")\n","title":"Tom Scott: The Fetch-Execute Cycle: What's Your Computer Actually Doing?"},"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 YouTube.new("https://www.youtube.com/watch?v=Z5JC9Ve1sfI")
@@ -213,12 +214,17 @@ In addition, performance issues generally have a more significant impact on lowe
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-computer_hardware
 $ git add .
 $ git commit -m "finish computer hardware section"
+$ git push origin exercise-computer_hardware
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 
-| Previous                                       | Next                                           |
-| ---------------------------------------------- | ---------------------------------------------: |
-| [Typing Game](../exercises/typing_game.livemd) | [Benchmarking](../reading/benchmarking.livemd) |
+| Previous                                                 | Next                                               |
+| -------------------------------------------------------- | -------------------------------------------------: |
+| [Pascals Triangle](../exercises/pascals_triangle.livemd) | [Big O Notation](../reading/big_o_notation.livemd) |

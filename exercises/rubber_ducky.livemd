@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -67,12 +66,17 @@ Use a deployment platform such as [Gigalixir](https://hexdocs.pm/phoenix/gigalix
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-rubber_ducky
 $ git add .
 $ git commit -m "finish rubber ducky exercise"
+$ git push origin exercise-rubber_ducky
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 
-| Previous                               | Next                                                                         |
-| -------------------------------------- | ---------------------------------------------------------------------------: |
-| [LiveView](../reading/liveview.livemd) | [Portfolio Blog Live Search](../exercises/portfolio_blog_live_search.livemd) |
+| Previous                                   | Next                                                               |
+| ------------------------------------------ | -----------------------------------------------------------------: |
+| [Math Game](../exercises/math_game.livemd) | [Capstone Project Mock](../exercises/capstone_project_mock.livemd) |

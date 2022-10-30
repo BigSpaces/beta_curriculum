@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -23,12 +22,6 @@ mix new todo_list --sup
 ```
 
 <!-- livebook:{"break_markdown":true} -->
-
-Evaluate the cell below to ensure you have correctly created the project.
-
-```elixir
-Utils.feedback(:created_project, "todo_list")
-```
 
 ## Install Ecto Dependencies
 
@@ -217,6 +210,11 @@ TodoList.all_items(%{"My"})
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-todo_list
 $ git add .
 $ git commit -m "finish todo list exercise"
+$ git push origin exercise-todo_list
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.

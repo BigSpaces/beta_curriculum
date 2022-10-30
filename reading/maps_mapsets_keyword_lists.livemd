@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -142,11 +141,9 @@ MapSets are Maps under the hood, so they inherit the same performance properties
 | Insertion | $O(n)$ for <= 32 elements, otherwise $O(log(n))$ |
 | Deletion  | $O(n)$ for <= 32 elements, otherwise $O(log(n))$ |
 
-```elixir
-MapSet
-```
+<!-- livebook:{"break_markdown":true} -->
 
-The MapSet module contains functions for working with MapSets.
+The [MapSet](https://hexdocs.pm/elixir/MapSet.html) module contains functions for working with MapSets.
 
 Here's a few to get you started:
 
@@ -209,12 +206,17 @@ the element `2`. Your answer should return `true`.
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-maps_mapsets_keyword_lists
 $ git add .
 $ git commit -m "finish maps mapsets keyword lists section"
+$ git push origin exercise-maps_mapsets_keyword_lists
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 
-| Previous                                             | Next                                       |
-| ---------------------------------------------------- | -----------------------------------------: |
-| [Lists Vs Tuples](../reading/lists_vs_tuples.livemd) | [Fibonacci](../exercises/fibonacci.livemd) |
+| Previous                                             | Next                                               |
+| ---------------------------------------------------- | -------------------------------------------------: |
+| [Lists Vs Tuples](../reading/lists_vs_tuples.livemd) | [MapSet Drills](../exercises/mapset_drills.livemd) |

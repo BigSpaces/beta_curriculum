@@ -5,7 +5,6 @@ Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
   {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"},
   {:kino_db, "~> 0.1.1"}
 ])
 ```
@@ -490,9 +489,14 @@ you might consider the following resources.
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-rdbms
 $ git add .
 $ git commit -m "finish rdbms section"
+$ git push origin exercise-rdbms
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 

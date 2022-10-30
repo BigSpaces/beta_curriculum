@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -91,12 +90,17 @@ Consider the following resource(s) to deepen your understanding of the topic.
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-credo
 $ git add .
 $ git commit -m "finish credo section"
+$ git push origin exercise-credo
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 
-| Previous                         | Next                                                                                                   |
-| -------------------------------- | -----------------------------------------------------------------------------------------------------: |
-| [Exdoc](../reading/exdoc.livemd) | [Games Documentation And Static Analysis](../exercises/games_documentation_and_static_analysis.livemd) |
+| Previous                         | Next                                                   |
+| -------------------------------- | -----------------------------------------------------: |
+| [Exdoc](../reading/exdoc.livemd) | [Typespec Drills](../exercises/typespec_drills.livemd) |

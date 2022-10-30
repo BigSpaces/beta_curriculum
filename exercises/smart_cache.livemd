@@ -4,8 +4,7 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:tested_cell, github: "brooklinjazz/tested_cell"}
 ])
 ```
 
@@ -59,12 +58,17 @@ end
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-smart_cache
 $ git add .
 $ git commit -m "finish smart cache exercise"
+$ git push origin exercise-smart_cache
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
 
 ## Up Next
 
-| Previous                                                         | Next                                                                           |
-| ---------------------------------------------------------------- | -----------------------------------------------------------------------------: |
-| [Inventory Management](../exercises/inventory_management.livemd) | [Concurrent Image Processing](../exercises/concurrent_image_processing.livemd) |
+| Previous                                                         | Next                                               |
+| ---------------------------------------------------------------- | -------------------------------------------------: |
+| [Inventory Management](../exercises/inventory_management.livemd) | [Kitchen Queue](../exercises/kitchen_queue.livemd) |

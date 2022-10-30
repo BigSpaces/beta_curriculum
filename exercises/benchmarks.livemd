@@ -5,8 +5,7 @@ Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
   {:tested_cell, github: "brooklinjazz/tested_cell"},
-  {:benchee, "~> 1.1"},
-  {:utils, path: "#{__DIR__}/../utils"}
+  {:benchee, "~> 1.1"}
 ])
 ```
 
@@ -113,6 +112,11 @@ Ensure that you test these operations with `1000` elements, `10_000` elements, a
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
 
 ```
+$ git checkout main
+$ git checkout -b exercise-benchmarks
 $ git add .
 $ git commit -m "finish benchmarks exercise"
+$ git push origin exercise-benchmarks
 ```
+
+Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
