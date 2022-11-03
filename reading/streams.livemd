@@ -4,7 +4,6 @@
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"},
   {:benchee, "~> 1.1"}
 ])
 ```
@@ -229,9 +228,9 @@ In the Elixir cell below, try refactoring this code using the [Stream](https://h
 
 ```elixir
 1..100
-|> Enum.map(fn each -> div(each, 2))
-|> Enum.map(fn each -> each * 3)
-|> Enum.filter(fn each -> rem(each, 2) === 0)
+|> Enum.map(fn each -> div(each, 2) end)
+|> Enum.map(fn each -> each * 3 end)
+|> Enum.filter(fn each -> rem(each, 2) === 0 end)
 ```
 
 ```elixir
@@ -435,16 +434,7 @@ end)
 </details>
 
 ```elixir
-starting_integer = 20
 
-Stream.iterate(starting_integer, fn int ->
-  if rem(int, 2) == 0 do
-    div(int, 2)
-  else
-    int * 3 + 1
-  end
-end)
-|> Enum.take_while(fn integer -> integer != 4 end)
 ```
 
 ### Stream.unfold/2
@@ -511,6 +501,7 @@ end)
 ## Commit Your Progress
 
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
+Ensure that you do not already have undesired or unrelated changes by running `git status` or by checking the source control tab in Visual Studio Code.
 
 ```
 $ git checkout main

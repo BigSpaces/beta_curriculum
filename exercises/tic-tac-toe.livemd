@@ -3,8 +3,7 @@
 ```elixir
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
-  {:hidden_cell, github: "brooklinjazz/hidden_cell"},
-  {:tested_cell, github: "brooklinjazz/tested_cell"}
+  {:hidden_cell, github: "brooklinjazz/hidden_cell"}
 ])
 ```
 
@@ -132,7 +131,7 @@ defmodule TicTacToe do
 
     We've used a board with letter symbols for sake of example.
 
-    iex> board = [["A", "B", "C"], ["D", "E", "F"],["G", "H", "I"]]
+    iex> board = [["A", "B", "C"], ["D", "E", "F"], ["G", "H", "I"]]
     iex> TicTacToe.at(board, {0, 0})
     "G"
     iex> TicTacToe.at(board, {1, 0})
@@ -164,7 +163,7 @@ defmodule TicTacToe do
 
   iex> board = [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]]
   iex> TicTacToe.fill(board, {0, 0}, "X")
-  [[nil, nil, nil], [nil, nil, nil], [nil, nil, "X"]]
+  [[nil, nil, nil], [nil, nil, nil], ["X", nil, nil]]
   iex> TicTacToe.fill(board, {1, 1}, "O")
   [[nil, nil, nil], [nil, "O", nil], [nil, nil, nil]]
   iex> TicTacToe.fill(board, {2, 2}, "X")
@@ -172,7 +171,7 @@ defmodule TicTacToe do
 
   Filling an existing board
 
-  iex> TicTacToe.fill([[nil, "X", nil], [nil, "X", "O"],[nil, nil, "X"]], {2, 2}, "O")
+  iex> TicTacToe.fill([[nil, "X", nil], [nil, "X", "O"], [nil, nil, "X"]], {2, 2}, "O")
   [[nil, "X", "O"], [nil, "X", "O"],[nil, nil, "X"]]
   """
   def fill(board, coordinate, symbol) do
@@ -319,6 +318,7 @@ end
 ## Commit Your Progress
 
 Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
+Ensure that you do not already have undesired or unrelated changes by running `git status` or by checking the source control tab in Visual Studio Code.
 
 ```
 $ git checkout main
