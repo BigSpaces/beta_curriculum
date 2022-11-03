@@ -24,25 +24,25 @@ This set of drills is for [MapSets](../reading/maps_mapsets_keyword_lists.livemd
 Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) to create a mapset with the integers `1`, `2`, and `3`.
 
 ```elixir
-
+MapSet.new([1, 2, 3])
 ```
 
 Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) to create an empty mapset.
 
 ```elixir
-
+MapSet.new()
 ```
 
 Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) to create a mapset with the integers `1` to `10`.
 
 ```elixir
-
+MapSet.new(1..10)
 ```
 
 Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) to create a mapset with the integers `1` to `1000`.
 
 ```elixir
-
+MapSet.new(1..1000)
 ```
 
 Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) to create a mapset with the same elements as the list below.
@@ -53,24 +53,31 @@ Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) to create a maps
 
 Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) to create a mapset with the elements `%{key: "value"}`, `[one: 1]`, and `{1, 2, 3}`.
 
+```elixir
+MapSet.new([%{key: "value"}, [one: 1], {1, 2, 3}])
+```
+
 ## MapSet.put/2
 
 Use [MapSet.put/2](https://hexdocs.pm/elixir/MapSet.html#put/2) to put the element `"a"` into the existing `mapset`.
 
 ```elixir
 mapset = MapSet.new(["b", "c"])
+MapSet.put(mapset, "a")
 ```
 
 Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) and [MapSet.put/2](https://hexdocs.pm/elixir/MapSet.html#put/2) to put `1` into a [MapSet](https://hexdocs.pm/elixir/MapSet.html) containing the elements `2` and `3`.
 
 ```elixir
-
+MapSet.put(MapSet.new([2, 3]), 1)
 ```
 
 Use [MapSet.put/2](https://hexdocs.pm/elixir/MapSet.html#put/2) twice with the element `1` on an empty mapset to demonstrate that the MapSet only contains unique values.
 
 ```elixir
-
+mapset = MapSet.new([])
+MapSet.put(mapset, 1)
+MapSet.put(mapset, 1)
 ```
 
 ## MapSet.delete/2
@@ -79,6 +86,7 @@ Use [MapSet.delete/2](https://hexdocs.pm/elixir/MapSet.html#delete/2) to delete 
 
 ```elixir
 mapset = MapSet.new([1])
+MapSet.delete(mapset, 1)
 ```
 
 Use [MapSet.delete/2](https://hexdocs.pm/elixir/MapSet.html#delete/2) and [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) to create a mapset with elements from `1` to `6` then delete the `6` element.
@@ -89,18 +97,20 @@ Use [MapSet.member?/2](https://hexdocs.pm/elixir/MapSet.html#member?/2) to check
 
 ```elixir
 mapset = MapSet.new([1, 2, 3])
+MapSet.member?(mapset, 4)
 ```
 
 Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) to create a mapset with elements from `1` to `10`. Then use [MapSet.member?/2](https://hexdocs.pm/elixir/MapSet.html#member?/2) to check if `11` is in the mapset.
 
 ```elixir
-
+MapSet.member?(MapSet.new(1..10), 11)
 ```
 
 Use [MapSet.member?/2](https://hexdocs.pm/elixir/MapSet.html#member?/2) to check if `%{key: "value"}` is in the following mapset.
 
 ```elixir
 mapset = MapSet.new([%{key: "value"}])
+MapSet.member?(mapset, %{key: "value"})
 ```
 
 ## MapSet.filter/2
@@ -109,18 +119,21 @@ Use [MapSet.filter/2](https://hexdocs.pm/elixir/MapSet.html#filter/2) to filter 
 
 ```elixir
 mapset = MapSet.new(["a", "b", "c", 1, 2, 3])
+MapSet.filter(mapset, &is_integer(&1))
 ```
 
 Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) and [MapSet.filter/2](https://hexdocs.pm/elixir/MapSet.html#filter/2) to create a mapset with integers from `1` to `10`, then filter it to make a mapset with only even numbers.
 
 ```elixir
-
+mapset = MapSet.new(1..10)
+MapSet.filter(mapset, &(rem(&1, 2) == 0))
 ```
 
 Use [MapSet.filter/2](https://hexdocs.pm/elixir/MapSet.html#filter/2) to filter the following mapset to only include strings containing the letter `"a"`.
 
 ```elixir
 MapSet.new(["apple", "orange", "pear", "banana", "cherry", "fruit"])
+|> MapSet.filter(&String.contains?(&1, "a"))
 ```
 
 ## MapSet.equal?/2
@@ -129,19 +142,23 @@ Use [MapSet.equal?/2](https://hexdocs.pm/elixir/MapSet.html#equal?/2) to check i
 
 ```elixir
 mapset = MapSet.new([1])
+MapSet.equal?(mapset, MapSet.new([3]))
 ```
 
 Use [MapSet.equal?/2](https://hexdocs.pm/elixir/MapSet.html#equal?/2) to check if `MapSet.new([1, 2, 3, 4, 5])` is equal to `MapSet.new(1..5)`.
 
 ```elixir
-
+MapSet.equal?(MapSet.new([1, 2, 3, 4, 5]), MapSet.new(1..5))
 ```
 
 Use [MapSet.new/2](https://hexdocs.pm/elixir/MapSet.html#new/2) to create an empty mapset, then [MapSet.put/2](https://hexdocs.pm/elixir/MapSet.html#put/2) to add `1` to the mapset.
 Then use [MapSet.equal?/2](https://hexdocs.pm/elixir/MapSet.html#equal?/2) to check if the resulting mapset equals `MapSet.new([1])`
 
 ```elixir
-
+newmapset = MapSet.new([])
+MapSet.put(newmapset, 1) |> IO.inspect()
+IO.inspect(newmapset)
+MapSet.equal?(newmapset, MapSet.new([1]))
 ```
 
 ## MapSet.subset?/2
@@ -149,13 +166,13 @@ Then use [MapSet.equal?/2](https://hexdocs.pm/elixir/MapSet.html#equal?/2) to ch
 Use [MapSet.subset?/2](https://hexdocs.pm/elixir/MapSet.html#subset?/2) to check if `MapSet.new([2, 3])` is a subset of `MapSet.new([1, 2, 3, 4])`. The result should be `true`.
 
 ```elixir
-
+MapSet.subset?(MapSet.new([2, 3]), MapSet.new([1, 2, 3, 4]))
 ```
 
 Use [MapSet.subset?/2](https://hexdocs.pm/elixir/MapSet.html#subset?/2) to check if `MapSet.new(["a"])` is a subset of `MapSet.new(["a", "b"])`.
 
 ```elixir
-
+MapSet.subset?(MapSet.new(["a"]), MapSet.new(["a", "b"]))
 ```
 
 ## MapSet.to_list/1
@@ -164,6 +181,7 @@ Use [MapSet.to_list/1](https://hexdocs.pm/elixir/MapSet.html#to_list/1) to conve
 
 ```elixir
 mapset = MapSet.new([1, 2, 3])
+MapSet.to_list(mapset)
 ```
 
 ## Commit Your Progress

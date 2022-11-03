@@ -211,19 +211,22 @@ defmodule MapSetProducts do
       iex> Products.filter(MapSet.new([%{name: "Laptop", category: :tech, price: 100}]), min: 50, max: 200, name: "Laptop", category: :tech)
       MapSet.new([%{name: "Laptop", category: :tech, price: 100}])
   """
-  def filter(products, filters \\ []) do
-    name_filter = filters[:name]
-    category_filter = filters[:category]
-    min_filter = filters[:min]
-    max_filter = filters[:max]
+defmodule Products do
+  def filter(products, filters) do
+    name_filter = Keyword.get(filters, :name, "")
+    category_filter = Keyword.get(filters, :category)
+    min_filter = Keyword.get(filters, :min)
+    max_filter = Keyword.get(filters, :max)
 
-    MapSet.filter(products, fn product ->
-      matches_name = !name_filter || Regex.match?(~r/#{name_filter}/i, product.name)
-      matches_category = !category_filter || product.category == category_filter
-      matches_min = !min_filter || min_filter <= product.price
-      matches_max = !max_filter || product.price <= max_filter
+    products
+    |> Enum.filter(fn product ->
+      matches_name =
+        !name_filter or String.contains?(String.downcase(product.name), String.downcase(name))
 
-      matches_name and matches_category and matches_min and matches_max
+      matches_category = !category_filter or product.category == category_filter
+      above_min_price = !min_filter or min_filter <= product.price
+      below_max_price = !max_filter or product.price <= max_filter
+      matches_name and matches_category and above_min_price and below_max_price
     end)
   end
 end
