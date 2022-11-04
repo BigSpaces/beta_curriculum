@@ -201,14 +201,30 @@ Here's the fully functional `GenericServer` module.
 
 ```elixir
 defmodule GenericServer do
+  # STEP 3 - We have received a PID of this server process and a request (:increment)
+  # We send a message to this server process (counter_process, because we are using Counter)
+  # The "receive do" loop of this server is pattern matching against a tuple ({request, caller})
+  # We are passing, in our implementation, the PID of this server, the request :increment, 
+  # and the PID of the parent process self() ---> Go to STEP 4
+
   def call(server_pid, request) do
     send(server_pid, {request, self()})
 
+    # STEP 7 - {:response, {:ok, 1}} - DONE
     receive do
       {:response, response} ->
         response
     end
   end
+
+  # STEP 2
+  # This will start the Generic Server for the module passed as an argument
+  # In te case of this example, it is Counter
+  # Spawn starts the module
+  # The initial state is defined by the init() function, which returns 0
+  # It is the Counter.init() function, which does just that: return 0
+  # Then the function calls the GenericServer.loop function and the spawn
+  # function returns the PID to the counter_process variable. -> Check LOOP
 
   def start(callback_module) do
     spawn(fn ->
@@ -217,14 +233,30 @@ defmodule GenericServer do
     end)
   end
 
+  # STEP 3 The receiving loop starts and the server is now listening. 
+  # Counter and 0 are passed as arguments
+  # When the receive do block receives a tuple {request, PID}, it will receive 
+  # a response from the Counter.handle_call/2 function
+
+  # In our implementation, we will pass {:increment}
   defp loop(callback_module, current_state) do
     receive do
+      # STEP 4: The call function has passed the request :increment, and the PID of the
+      # parent process. It matches, so we run the function handle_call of the module Counter
+      # passing the arguments request (:increment) and (current_state), which is initially 0
+      # Go to STEP 5
+
       {request, caller} ->
         {response, new_state} =
           callback_module.handle_call(
             request,
             current_state
           )
+
+        # STEP 6 - With response {response, new state} {{:ok, 1}, 1} we respond to the parent process 
+        # sending {:response, {:ok, 1}} - Go to STEP 7
+        # We also recursively call this loop function again, with the new_state
+        # ...And keep the server listening
 
         send(caller, {:response, response})
 
@@ -248,20 +280,36 @@ defmodule Counter do
     0
   end
 
+  # STEP 5 - We pattern match. If the request is :increment, we take the state 
+  # and we add 1. We bind a tuple {:ok, 1} to the variable response, and then we 
+  # include this inside of a tuple {{:ok, 1}, 1} -- Go to STEP 6
   def handle_call(:increment, state) do
     new_state = state + 1
     response = {:ok, new_state}
     {response, new_state}
   end
+
+  def handle_call(:double, state) do
+    new_state = state * 2
+    response = {:ok, new_state}
+    {response, new_state}
+  end
 end
 
+# STEP 1
+# This below will start a GenServer process with the Counter.init function.
+# The initial state will be 0
+# The variable counter_process will store the PID of the Generic Server
 counter_process = GenericServer.start(Counter)
 ```
 
 Now we can call the counter process to update its internal state.
 
 ```elixir
-GenericServer.call(counter_process, :increment)
+# We call the call function with the PID of the spawn process of the server 
+# and the request to increment
+
+GenericServer.call(counter_process, :double)
 ```
 
 `handle_call/2` lets us define generic messages we can send to the Counter process.
