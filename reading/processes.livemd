@@ -108,7 +108,7 @@ related to processes. We'll use the `alive?/1` function to show that the process
 
 ```elixir
 pid = spawn(fn -> IO.puts("I was called") end)
-
+Process.sleep(0)
 Process.alive?(pid) && IO.puts("I am alive!")
 ```
 
@@ -191,7 +191,8 @@ Spawn a linked process and crash this Elixir cell below.
 Comment out your solution when complete to avoid continuously crashing the livebook!
 
 ```elixir
-
+# pid2 = spawn(fn -> raise "error terror" end)
+# Process.link(pid2)
 ```
 
 ## Message Passing
@@ -212,10 +213,10 @@ end
 ```
 
 ```elixir
-pid1 =
+pid2 =
   spawn(fn ->
     receive do
-      "message" -> IO.puts("received!")
+      "message" -> IO.puts("Mike Rocks")
     end
   end)
 ```
@@ -237,7 +238,14 @@ In the Elixir cell below, spawn a new process and send it a message `{:hello, "w
 `IO.puts` the message's payload where `"world"` is the payload.
 
 ```elixir
+pid_mypid =
+  spawn(fn ->
+    receive do
+      {:hello, payload} -> IO.puts(payload)
+    end
+  end)
 
+send(pid_mypid, {:hello, "bien bien bien"})
 ```
 
 ## State
@@ -342,6 +350,7 @@ defmodule Counter do
 
     receive do
       :increment -> loop(state + 1)
+      :decrement -> loop(state - 1)
     end
   end
 end
@@ -352,7 +361,7 @@ counter_process = spawn(fn -> Counter.loop() end)
 You should be able to send a `:decrement` message to a spawned `Counter`. Uncomment and evaluate the code below to test your solution.
 
 ```elixir
-# send(counter_process, :decrement)
+send(counter_process, :decrement)
 ```
 
 ## Commit Your Progress
