@@ -101,7 +101,33 @@ Implement the `Stack` module below. You do not need to handle `:pop`-ing an elem
 
 ```elixir
 defmodule Stack do
+  use GenServer
+
+  @impl true
+  def init(_opts) do
+    {:ok, []}
+  end
+
+  @impl true
+  def handle_call({:push, new_element}, _caller, stack) do
+    new_stack = [new_element | stack]
+    {:reply, new_stack, new_stack}
+  end
+
+  @impl true
+  def handle_call(:pop, _caller, stack) do
+    new_stack = tl(stack)
+    {:reply, new_stack, new_stack}
+  end
 end
+```
+
+```elixir
+{:ok, stack_pid} = GenServer.start_link(Stack, [])
+```
+
+```elixir
+GenServer.call(stack_pid, :pop)
 ```
 
 ## Commit Your Progress
