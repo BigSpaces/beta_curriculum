@@ -143,6 +143,10 @@ Implement the `Pokemon` GenServer and struct definition as documented below.
 
 ```elixir
 defmodule Pokemon do
+  use GenServer
+  @enforce_keys [:name, :type]
+  defstruct @enforce_keys ++ [health: 20, attack: 5]
+
   @moduledoc """
   Pokemon Server
 
@@ -153,7 +157,6 @@ defmodule Pokemon do
     iex> %Pokemon{name: "Charmander", type: :fire}
     %Pokemon{name: "Charmander", type: :fire, health: 20, attack: 5}
   """
-  use GenServer
 
   @doc """
   Start the Pokemon GenServer.
@@ -162,6 +165,12 @@ defmodule Pokemon do
       iex> {:ok, pokemon} = Pokemon.start_link([pokemon: %Pokemon{name: "Charmander", type: :fire}])
   """
   def start_link(opts \\ []) do
+    GenServer.start_link(__MODULE__, opts, [])
+  end
+
+  @impl true
+  def init(state) do
+    {:ok, state}
   end
 
   @doc """
@@ -204,9 +213,49 @@ defmodule Pokemon do
       iex> Pokemon.attack(attacker, defender)
       %Pokemon{name: "Bulbasaur2", type: :grass, health: 25, attack: 5}
   """
+
   def attack(attacker, defender) do
+    attacker_type = GenServer.call(attacker, :get_type)
+    defender_type = GenServer.call(defender, :get_type)
+    advantages = [{:fire, :grass}, {:grass, :water}, {:water, :fire}]
+    disadvantages = [{:fire, :water}, {:grass, :fire}, {:water, :grass}]
+
+    multiplier =
+      cond do
+        {attacker_type, defender_type} in advantages -> 2
+        {attacker_type, defender_type} in disadvantages -> 0.5
+        true -> 1
+      end
+
+    attack_points = GenServer.call(attacker, :get_attack) * multiplier
+    GenServer.call(defender, {:battle, attack_points})
+  end
+
+  @impl true
+  def handle_call(:get_attack, _from_pid, state) do
+    {:reply, state[:pokemon].attack, state}
+  end
+
+  @impl true
+  def handle_call(:get_type, _from, state) do
+    {:reply, state[:pokemon].type, state}
+  end
+
+  @impl true
+  def handle_call({:battle, attack_points}, _from_pid, state) do
+    new_health = state[:pokemon].health - attack_points
+    updated_pokemon = %{state[:pokemon] | health: new_health}
+    new_state = [pokemon: updated_pokemon]
+    {:reply, updated_pokemon, new_state}
   end
 end
+```
+
+```elixir
+{:ok, attacker} = Pokemon.start_link(pokemon: %Pokemon{name: "Bulbasaur", type: :grass})
+{:ok, defender} = Pokemon.start_link(pokemon: %Pokemon{name: "Charmander", type: :fire})
+Pokemon.attack(attacker, defender)
+# %Pokemon{name: "Charmander", type: :fire, health: 17.5, attack: 5}
 ```
 
 ## Commit Your Progress
