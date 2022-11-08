@@ -22,6 +22,14 @@ We've made a slight modification to the `Stack` process by adding a `start_link/
 defmodule Stack do
   use GenServer
 
+  # BrookQuestion - This is how I first tried 
+  # children = [%{id: :stack, start: {__MODULE__, :start_link, []}}]
+  # Supervisor.start_link(children, strategy: :one_for_one)
+  # I think I am not grasping the start signature. Guidance, please?
+
+  # BrookQuestion - I also do not fully understand the solution cell
+  # Is that supposed to be all part of the module, or part of it is to be called from outside? 
+
   def start_link(opts) do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
@@ -102,7 +110,11 @@ children = [
 Keep in mind, if you have already started a supervisor with the `Stack` process, your livebook may crash. You can resolve this issue by simply re-running the cell below to start the supervisor again.
 
 ```elixir
+children = [
+  {Stack, []}
+]
 
+{:ok, supervisor_pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
 
 You should be able to send a `:pop` message to the `Stack` process and the [Supervisor](https://hexdocs.pm/elixir/Supervisor.html) will restart the `Stack` process.
@@ -110,7 +122,7 @@ You should be able to send a `:pop` message to the `Stack` process and the [Supe
 Uncomment and evaluate the code below to test your supervisor.
 
 ```elixir
-# GenServer.call(Stack, :pop)
+GenServer.call(Stack, :pop)
 ```
 
 ## Commit Your Progress

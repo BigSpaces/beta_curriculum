@@ -102,6 +102,8 @@ Implement the `Monster` process as documented below.
 ```elixir
 defmodule Monster do
   use GenServer
+  @enforce_keys [:health]
+  defstruct @enforce_keys
 
   @doc """
   Start the `Monster` process.
@@ -110,9 +112,11 @@ defmodule Monster do
 
       iex> {:ok, pid} = Monster.start_link([])
   """
+
+  # BrookQuestion - The Start signature options is killing me "name: opts[:name]" 
+  # Sesame Street it for me please
   def start_link(opts) do
-    # IO.inspect/2 to observe when a `Monster` process starts.
-    IO.inspect(opts, label: "Monster Started")
+    GenServer.start_link(__MODULE__, opts, name: opts[:name])
   end
 
   @doc """
@@ -128,6 +132,7 @@ defmodule Monster do
       %{health: 70}
   """
   def attack(monster_pid, amount) do
+    GenServer.cast(monster_pid, {:attack, amount})
   end
 
   @doc """
@@ -140,6 +145,7 @@ defmodule Monster do
       100
   """
   def health(monster_pid) do
+    GenServer.call(monster_pid, :health)
   end
 
   @doc """
@@ -153,7 +159,8 @@ defmodule Monster do
       %{health: 100}
   """
   @impl true
-  def init(_opts) do
+  def init(opts) do
+    {:ok, %{health: 100}}
   end
 
   @doc """
@@ -174,7 +181,25 @@ defmodule Monster do
   """
   @impl true
   def handle_cast({:attack, damage}, state) do
+    new_health = state.health - damage
+
+    if new_health <= 0 do
+      raise "dying!"
+    else
+      {:noreply, %{state | health: new_health}}
+    end
   end
+
+  # BrookQuestion - Why is my implementation not working? I don't get it:   
+
+  # case state.health - damage do
+  #   0 ->
+  #     raise("Morir! Morir!")
+
+  #   true ->
+  #     new_state = Map.replace(state, :health, state.health - damage)
+  #     {:noreply, new_state}
+  # end
 
   @doc """
   Callback function to retrieve the current health of a monster.
@@ -187,8 +212,19 @@ defmodule Monster do
   """
   @impl true
   def handle_call(:health, _from, state) do
+    {:reply, state.health, state}
   end
 end
+```
+
+```elixir
+# {:ok, pid} = GenServer.start_link(Monster, [])
+# GenServer.call(pid, :health)
+```
+
+```elixir
+# GenServer.cast(pid, {:attack, 20})
+# :sys.get_state(pid)
 ```
 
 ## Supervisor
@@ -240,7 +276,22 @@ Supervisor.start_link(children, strategy: :one_for_one)
 Enter your solution below.
 
 ```elixir
+children = [
+  %{
+    id: :Monster1,
+    start: {Monster, :start_link, [[name: :monster1]]}
+  },
+  %{
+    id: :Monster2,
+    start: {Monster, :start_link, [[name: :monster2]]}
+  },
+  %{
+    id: :Monster3,
+    start: {Monster, :start_link, [[name: :monster3]]}
+  }
+]
 
+{:ok, supervisor_pid} = Supervisor.start_link(children, strategy: :one_for_one)
 ```
 
 Call `Monster.attack/1` on your monster processes to ensure they are restarted.
@@ -256,7 +307,7 @@ Monster.attack(:monster1, 110)
 </details>
 
 ```elixir
-
+# Monster.attack(:monster1, 110)
 ```
 
 ## Bonus: Hero
@@ -297,7 +348,24 @@ end
 </details>
 
 ```elixir
+#BrookQuestion: in which instances we choose Process.send instead of GenServer.call?
 
+
+defp schedule_attack() do
+    Process.send_after(self(), :attack_monsters, 1000)
+  end
+
+  def handle_info(:attack_monsters, state) do
+    Supervisor.which_children(:rpg_supervisor)
+    |> Enum.each(fn
+      {_name, pid, :worker, [Monster]} -> Monster.attack(pid, Enum.random(1..10))
+      _ -> :ok
+    end)
+
+```
+
+```elixir
+Hero.start_link(supervisor_pid)
 ```
 
 Start the `Hero` process with three other `Monster` processes in the same supervisor. Make the supervisor a named supervisor so you can find all of its child processes with [Supervisor.which_children/1](https://hexdocs.pm/elixir/Supervisor.html#which_children/1).
