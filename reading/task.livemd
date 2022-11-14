@@ -3,7 +3,8 @@
 ```elixir
 Mix.install([
   {:youtube, github: "brooklinjazz/youtube"},
-  {:hidden_cell, github: "brooklinjazz/hidden_cell"}
+  {:hidden_cell, github: "brooklinjazz/hidden_cell"},
+  {:duration_tc, "~> 0.1.1"}
 ])
 ```
 
@@ -51,14 +52,28 @@ Process.alive?(task_pid) || IO.puts("task is dead")
 With [Task](https://hexdocs.pm/elixir/Task.html), we can use `async/1` and `await/1` to spawn a process, perform some calculation, and the retrieve the value when it's finished.
 
 ```elixir
-task =
+task3 =
   Task.async(fn ->
     # simulating expensive calculation
-    Process.sleep(1000)
+    Process.sleep(8000)
     "response!"
   end)
 
-Task.await(task)
+# Task.await(task)
+```
+
+```elixir
+Task.await(task3)
+```
+
+```elixir
+task_struct =
+  Task.async(fn ->
+    Process.sleep(4000)
+    2 + 2 + 5
+  end)
+
+Task.await(task_struct, 5000)
 ```
 
 We can run two computations concurrently by separating them into two different [Task](https://hexdocs.pm/elixir/Task.html) processes.
@@ -113,7 +128,7 @@ sequenceDiagram
 contains information about who the parent (`:owner`) process is, the task's pid (`:pid`), and a reference (`:ref`) used to monitor if the task crashes.
 
 ```elixir
-Task.async(fn -> nil end)
+Task.async(fn -> IO.puts("Hello") end)
 ```
 
 To demonstrate the performance value of concurrency, let's say we have two computations which each take `1` second, it would normally take us `2` seconds
@@ -123,14 +138,13 @@ to run these tasks synchronously.
 computation1 = fn -> Process.sleep(1000) end
 computation2 = fn -> Process.sleep(1000) end
 
-{microseconds, _result} =
-  :timer.tc(fn ->
+result =
+  Timer.tc(fn ->
     computation1.()
     computation2.()
   end)
 
-# expected to be ~2 seconds
-microseconds / 1000 / 1000
+result
 ```
 
 By running these computations in parallel, we can theoretically reduce this time to `1` second instead of `2`.
@@ -141,8 +155,8 @@ By running these computations in parallel, we can theoretically reduce this time
 computation1 = fn -> Process.sleep(1000) end
 computation2 = fn -> Process.sleep(1000) end
 
-{microseconds, _result} =
-  :timer.tc(fn ->
+result =
+  Timer.tc(fn ->
     task1 = Task.async(fn -> computation1.() end)
     task2 = Task.async(fn -> computation2.() end)
 
@@ -150,8 +164,7 @@ computation2 = fn -> Process.sleep(1000) end
     Task.await(task2)
   end)
 
-# expected to be ~1 second
-microseconds / 1000 / 1000
+result
 ```
 
 ### Your Turn
@@ -162,7 +175,62 @@ execution and parallel execution.
 You may consider using [Process.sleep/1](https://hexdocs.pm/elixir/Process.html#sleep/1) to simulate an expensive computation.
 
 ```elixir
+# expensive_process_1 = fn ->
+#   IO.puts("Waiting 4.5 seconds")
+#   Process.sleep(4500)
+#   IO.puts("Finished waiting 4.5 seconds")
+# end
 
+# expensive_process_2 = fn ->
+#   IO.puts("Waiting 3.7 seconds")
+#   Process.sleep(3700)
+#   IO.puts("Finished waiting 3.7 seconds")
+# end
+
+result_async =
+  Timer.tc(fn ->
+    IO.puts("Starting Async / Parallel")
+
+    Task.async(fn ->
+      IO.puts("ASYNC: Waiting 4.5 seconds")
+      Process.sleep(4500)
+      IO.puts("ASYNC: Finished waiting 4.5 seconds")
+    end)
+
+    Task.async(fn ->
+      IO.puts("ASYNC: Waiting 3.7 seconds")
+      Process.sleep(3700)
+      IO.puts("ASYNC: Finished waiting 3.7 seconds")
+    end)
+
+    IO.puts("Finished Async / Parallel")
+  end)
+
+result_await =
+  Timer.tc(fn ->
+    IO.puts("Starting Sync / Sequential")
+
+    Task.await(
+      Task.async(fn ->
+        IO.puts("SYNC: Waiting 4.5 seconds")
+        Process.sleep(4500)
+        IO.puts("SYNC: Finished waiting 4.5 seconds")
+      end)
+    )
+
+    Task.await(
+      Task.async(fn ->
+        IO.puts("SYNC: Waiting 3.7 seconds")
+        Process.sleep(3700)
+        IO.puts("SYNC: Finished waiting 3.7 seconds")
+      end)
+    )
+
+    IO.puts("Finished Sync / Sequential")
+  end)
+
+IO.inspect(result_async, label: "Async time: ")
+IO.inspect(result_await, label: "Sync time: ")
 ```
 
 ## Awaiting Many Tasks
@@ -182,7 +250,10 @@ tasks =
 Then we can also use enumeration to `await/1` each task.
 
 ```elixir
-Enum.map(tasks, fn task -> Task.await(task) end)
+Enum.map(tasks, fn task ->
+  IO.inspect(task)
+  Task.await(task, 10000)
+end)
 ```
 
 Alernatively, you can use the convenient `Taskl.await_many/1` function instead.
@@ -196,7 +267,9 @@ tasks =
     end)
   end)
 
-Task.await_many(tasks)
+Timer.tc(fn ->
+  Task.await_many(tasks)
+end)
 ```
 
 ## Timeouts
