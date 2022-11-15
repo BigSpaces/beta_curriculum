@@ -67,6 +67,14 @@ defmodule WordCount do
       [2, 2]
   """
   def individual_count(documents) do
+    list_of_tasks =
+      Enum.map(documents, fn document ->
+        Task.async(fn ->
+          String.split(document, " ", trim: true) |> Enum.count()
+        end)
+      end)
+
+    Task.await_many(list_of_tasks)
   end
 
   @doc """
@@ -77,8 +85,13 @@ defmodule WordCount do
   4
   """
   def total_count(documents) do
+    individual_count(documents) |> Enum.sum()
   end
 end
+```
+
+```elixir
+WordCount.total_count(["document one", "document two"])
 ```
 
 Run the following in your command line from the curriculum folder to track and save your progress in a Git commit.
