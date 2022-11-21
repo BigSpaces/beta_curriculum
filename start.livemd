@@ -231,6 +231,15 @@ If you do not see the box above, or if you encounter any issues with this course
   * Drills: [Typespecs](exercises/typespec_drills.livemd)
   * [Games: Documentation and Static Analysis](exercises/games_documentation_and_static_analysis.livemd)
 
+<!-- livebook:{"break_markdown":true} -->
+
+### Executables
+
+* Reading
+  * [Executables](reading/executables.livemd)
+* Exercises
+  * [Games: Menu](exercises/games_menu.livemd)
+
 ## OTP and Advanced Syntax
 
 ### Protocols
@@ -318,6 +327,7 @@ If you do not see the box above, or if you encounter any issues with this course
 * Reading
   * [Asynchronous Messages](reading/async_messages.livemd)
 * Exercises
+  * [Mailbox Server](exercises/mailbox_server.livemd)
   * [Score Tracker](exercises/score_tracker.livemd)
   * [Timer](exercises/timer.livemd)
 
@@ -330,8 +340,17 @@ If you do not see the box above, or if you encounter any issues with this course
 * Exercises
   * [Supervised Stack](exercises/supervised_stack.livemd)
   * [Dominoes](exercises/dominoes.livemd)
-  * [Creature Spawner](exercises/creature_spawner.livemd)
-  * [Typing Game](exercises/typing_game.livemd)
+  * [Monster Spawner](exercises/creature_spawner.livemd)
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Testing GenServers
+
+* Reading
+  * [Testing GenServers](reading/testing_genservers.livemd)
+* Exercises
+  * [Stack GenServer Testing](exercises/stack.livemd)
+  * [Games: Score Tracker](exercises/games_score_tracker.livemd)
 
 <!-- livebook:{"break_markdown":true} -->
 
@@ -339,10 +358,10 @@ If you do not see the box above, or if you encounter any issues with this course
 
 * Reading
   * [Supervised Mix Project](reading/supervised_mix_project.livemd)
-  * [Testing GenServers](reading/testing_genservers.livemd)
 * Exercises
-  * [Stack GenServer Testing](exercises/stack.livemd)
-  * [Games: Rock Paper Scissors Server]
+  * Drills: [Supervisors and GenServers](exercises/supervisor_and_genserver_drills.livemd)
+  * [Games: Supervisor Setup](exercises/games_supervisor_setup.livemd)
+  * [Games: Supervised Score Tracker](exercises/games_supervised_score_tracker.livemd)
 
 <!-- livebook:{"break_markdown":true} -->
 
@@ -350,44 +369,42 @@ If you do not see the box above, or if you encounter any issues with this course
 
 * Reading
   * [Task](reading/task.livemd)
+  * [Task Supervisor](reading/task_supervisor.livemd)
 * Exercises
-  * [Concurrent Image Processing](exercises/concurrent_image_processing.livemd)
+  * Drills: [Tasks](exercises/task_drills.livemd)
+  * [Concurrent Word Count](exercises/concurrent_word_count.livemd)
 
 <!-- livebook:{"break_markdown":true} -->
 
-### State Management With Agents
+### State Management With Agents and ETS
 
 * Reading
+  * [State: Agent and ETS](reading/agents_and_ets.livemd)
   * [Elixir-lang: Agents](https://elixir-lang.org/getting-started/mix-otp/agent.html)
   * [HexDocs: Agents](https://hexdocs.pm/elixir/Agent.html)
 * Exercises
-  * Games: Score Tracker
-  * Games: Multiplayer Score Tracker
+  * [Agent Journal](exercises/agent_journal.livemd)
+  * [ETS Warehouse](exercises/inventory_management.livemd)
+  * Mastery: [Advanced Score Tracker](exercises/advanced_score_tracker.livemd)
 
 <!-- livebook:{"break_markdown":true} -->
 
-### In Memory State With Agents and ETS.
-
-* Reading
-  * [Caching: Agent and ETS](reading/caching_agent_ets.livemd)
-* Exercises
-  * [Inventory Management](exercises/inventory_management.livemd)
-  * [Smart Cache](exercises/smart_cache.livemd)
-  * [Kitchen Queue](exercises/kitchen_queue.livemd)
-
-<!-- livebook:{"break_markdown":true} -->
-
-### Files and Data Validation
+### Persistence Using the File System
 
 * Reading
   * [File](reading/file.livemd)
-  * [Ecto Changeset](reading/ecto_changeset.livemd)
 * Exercises
+  * Drills: [File](exercises/file_drills.livemd)
   * [Save Game](exercises/save_game.livemd)
-  * [File System Todo App](exercises/file_system_todo_app.livemd)
-  * [Phone Parsing](exercises/phone_parsing.livemd)
-  * [File Types](exercises/file_types.livemd)
-  * [Sign Up Form](exercises/sign_up_form.livemd)
+  * Bonus: [File System Todo App](exercises/file_system_todo_app.livemd)
+  * Bonus: [Document Tools](exercises/document_tools.livemd)
+  * Mastery: [File Search](exercises/file_search.livemd)
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Rubix Cube Project
+
+* [Rubix Cube](exercises/rubix_cube.livemd)
 
 ## Web Servers and Phoenix
 
@@ -396,7 +413,8 @@ If you do not see the box above, or if you encounter any issues with this course
 * Reading
   * [HTML + CSS](reading/html_css.livemd)
 * Exercises
-  * [Home Page](exercises/home_page.livemd)
+  * [Common Components](exercises/common_components.livemd)
+  * Bonus: [Home Page](exercises/home_page.livemd)
 
 <!-- livebook:{"break_markdown":true} -->
 
@@ -420,6 +438,15 @@ If you do not see the box above, or if you encounter any issues with this course
   * [Portfolio: Home Page](exercises/portfolio_home_page.livemd)
 
 ## Databases With Ecto
+
+### Data Validation
+
+* Reading
+  * [Ecto Changeset](reading/ecto_changeset.livemd)
+* Exercises
+  * [Sign Up Form](exercises/sign_up_form.livemd)
+
+<!-- livebook:{"break_markdown":true} -->
 
 ### Relational Database Management Systems and Ecto
 

@@ -2,6 +2,7 @@
 
 ```elixir
 Mix.install([
+  {:kino, "~> 0.7.0", override: true},
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"}
 ])
@@ -114,7 +115,7 @@ ExUnit.start(auto_run: false)
 defmodule CounterTest do
   use ExUnit.Case
 
-  test "Counter.increment/1" do
+  test "increment/1" do
     {:ok, pid} = Counter.start_link([])
     Counter.increment(pid)
     assert Counter.get_count(pid) == 1
@@ -172,7 +173,7 @@ ExUnit.start(auto_run: false)
 defmodule CounterTest do
   use ExUnit.Case
 
-  test "Counter.increment/1" do
+  test "increment/1" do
     {:ok, pid} = Counter.start_link([])
     Counter.increment(pid)
     assert Counter.get_count(pid) == 1
@@ -202,33 +203,81 @@ ExUnit.run()
 
 For more on testing [GenServer](https://hexdocs.pm/elixir/GenServer.html)s, there is an excellent talk by Tyler Young.
 
+<!-- livebook:{"attrs":{"source":"YouTube.new(\"https://www.youtube.com/watch?v=EZFLPG7V7RM\")","title":"Testing GenServers"},"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
+
 ```elixir
 YouTube.new("https://www.youtube.com/watch?v=EZFLPG7V7RM")
 ```
 
 ### Your Turn
 
-Create a `counter` mix project in your projects folder.
-
-```
-$ mix new counter
-```
-
-Implement your own `Counter` server with `increment/1`, `decrement/1` and `get_count/1` functions. Ensure each function has at least one test.
-
-<!-- livebook:{"force_markdown":true} -->
+Implement and test a `decrement/1` function on the `Counter` module.
 
 ```elixir
-{:ok, pid} = Counter.start_link([])
-Counter.increment(pid)
-1 = Counter.get_count(pid)
-Counter.decrement(pid)
-0 = Counter.get_count(pid)
+defmodule Counter do
+  use GenServer
+
+  # Client
+
+  def start_link(_opts) do
+    GenServer.start_link(__MODULE__, %{count: 0})
+  end
+
+  def increment(pid) do
+    GenServer.call(pid, :increment)
+  end
+
+  def get_count(pid) do
+    GenServer.call(pid, :get_count)
+  end
+
+  def decrement(pid) do
+    # Implementation
+  end
+
+  # Server
+
+  @impl true
+  def init(state) do
+    {:ok, state}
+  end
+
+  @impl true
+  def handle_call(:get_count, _from, state) do
+    {:reply, state.count, state}
+  end
+
+  @impl true
+  def handle_call(:increment, _from, state) do
+    {:reply, state.count + 1, %{state | count: state.count + 1}}
+  end
+
+  @impl true
+  def handle_call(:decrement, _from, state) do
+    # Implementation
+  end
+end
+
+ExUnit.start(auto_run: false)
+
+defmodule CounterTest do
+  use ExUnit.Case
+
+  test "increment/1" do
+    {:ok, pid} = Counter.start_link([])
+    Counter.increment(pid)
+    assert Counter.get_count(pid) == 1
+  end
+
+  test "decrement/1"
+end
+
+ExUnit.run()
 ```
 
 ## Commit Your Progress
 
-Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
+Run the following in your command line from the curriculum folder to track and save your progress in a Git commit.
 Ensure that you do not already have undesired or unrelated changes by running `git status` or by checking the source control tab in Visual Studio Code.
 
 ```
@@ -239,10 +288,16 @@ $ git commit -m "finish testing genservers section"
 $ git push origin exercise-testing_genservers
 ```
 
-Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+Create a pull request to your forked `main` branch. Please do not create a pull request to the DockYard Academy repository as this will spam our PR tracker.
+
+**DockYard Academy Students Only:**
+
+Notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+
+If you are interested in joining the next academy cohort, [sign up here](https://academy.dockyard.com/) to receive more news when it is available.
 
 ## Up Next
 
-| Previous                                                           | Next                               |
-| ------------------------------------------------------------------ | ---------------------------------: |
-| [Supervised Mix Project](../reading/supervised_mix_project.livemd) | [Stack](../exercises/stack.livemd) |
+| Previous                                 | Next                               |
+| ---------------------------------------- | ---------------------------------: |
+| [Dominoes](../exercises/dominoes.livemd) | [Stack](../exercises/stack.livemd) |

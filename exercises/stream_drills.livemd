@@ -2,6 +2,7 @@
 
 ```elixir
 Mix.install([
+  {:kino, "~> 0.7.0", override: true},
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"}
 ])
@@ -16,7 +17,7 @@ Mix.install([
 
 Drills help you develop familiarity and muscle memory with syntax through repeated exercises. Unlike usual problems, Drills are not intended to develop problem solving skills, they are purely for developing comfort and speed.
 
-This set of drills is for [Streams](../reading/streams.livemd) follow the instructions for each drill and complete them as quickly as you can.
+This set of drills is for [Streams](../reading/streams.livemd). Follow the instructions for each drill and complete them as quickly as you can.
 
 ## Stream.map/2
 
@@ -122,7 +123,7 @@ Use [Stream.chunk_every/2](https://hexdocs.pm/elixir/Stream.html#chunk_every/2) 
 
 ## Commit Your Progress
 
-Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
+Run the following in your command line from the curriculum folder to track and save your progress in a Git commit.
 Ensure that you do not already have undesired or unrelated changes by running `git status` or by checking the source control tab in Visual Studio Code.
 
 ```
@@ -133,7 +134,13 @@ $ git commit -m "finish stream drills exercise"
 $ git push origin exercise-stream_drills
 ```
 
-Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+Create a pull request to your forked `main` branch. Please do not create a pull request to the DockYard Academy repository as this will spam our PR tracker.
+
+**DockYard Academy Students Only:**
+
+Notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+
+If you are interested in joining the next academy cohort, [sign up here](https://academy.dockyard.com/) to receive more news when it is available.
 
 ## Up Next
 

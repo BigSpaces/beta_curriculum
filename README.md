@@ -203,6 +203,7 @@ The curriculum is still a rough outline subject to change and feedback. see [sta
 * Testing With ExUnit
 * ExUnit With Mix Projects
 * Documentation and Static Analysis
+* Executables
 ## OTP and Advanced Syntax
 * Protocols
 * Recursion
@@ -213,16 +214,18 @@ The curriculum is still a rough outline subject to change and feedback. see [sta
 * GenServers
 * Asynchronous Messages
 * Supervisor Basics and Fault Tolerance
+* Testing GenServers
 * Mix Projects & Processes
 * Concurrency With Tasks
-* State Management With Agents
-* In Memory State With Agents and ETS.
-* Files and Data Validation
+* State Management With Agents and ETS
+* Persistence Using the File System
+* Rubix Cube Project
 ## Web Servers and Phoenix
 * HTML and CSS
 * APIs & Parsing JSON
 * Phoenix
 ## Databases With Ecto
+* Data Validation
 * Relational Database Management Systems and Ecto
 * Phoenix and Ecto
 * Phoenix Authentication

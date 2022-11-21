@@ -2,6 +2,7 @@
 
 ```elixir
 Mix.install([
+  {:kino, "~> 0.7.0", override: true},
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"}
 ])
@@ -67,17 +68,18 @@ Test and implement a `Games.Wordle` module in your [Games](./games_setup.livemd)
 
 <!-- livebook:{"break_markdown":true} -->
 
-### Bonus: Random Word
+### Play
 
-Use the IEx shell to start a game of Wordle.
+Use the IEx shell to start a game of Wordle. This should prompt the user to guess a five letter word.
 
 ```
-iex> Games.Wordle.start()
+iex> Games.Wordle.play()
 Enter a five letter word:  
 ```
 
-Randomly generate a word for the wordle game. Retrieve user input and provide feedback based
-on their guess. For example, this would be the output if the word `toast` were randomly generated.
+Randomly generate a word for the wordle game. You might randomly retrieve a word from a list of words such as `["toast", "tarts", "hello", "beats"]`.
+
+Retrieve user input and provide feedback based on their guess. For example, this would be the output if the word `toast` were randomly generated.
 
 ```
 Enter a give letter word: tarts
@@ -90,9 +92,15 @@ Enter a give letter word: tarts
 
 After six guesses, the player should lose the game if they do not get the correct answer.
 
+<!-- livebook:{"break_markdown":true} -->
+
+### Bonus: Color Feedback
+
+Use [IO.ANSI](https://hexdocs.pm/elixir/IO.ANSI.html) to provide actual colored feedback.
+
 ## Commit Your Progress
 
-Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
+Run the following in your command line from the curriculum folder to track and save your progress in a Git commit.
 Ensure that you do not already have undesired or unrelated changes by running `git status` or by checking the source control tab in Visual Studio Code.
 
 ```
@@ -103,7 +111,13 @@ $ git commit -m "finish games wordle exercise"
 $ git push origin exercise-games_wordle
 ```
 
-Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+Create a pull request to your forked `main` branch. Please do not create a pull request to the DockYard Academy repository as this will spam our PR tracker.
+
+**DockYard Academy Students Only:**
+
+Notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+
+If you are interested in joining the next academy cohort, [sign up here](https://academy.dockyard.com/) to receive more news when it is available.
 
 ## Up Next
 

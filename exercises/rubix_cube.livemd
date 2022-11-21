@@ -2,6 +2,7 @@
 
 ```elixir
 Mix.install([
+  {:kino, "~> 0.7.0", override: true},
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"}
 ])
@@ -14,7 +15,7 @@ Mix.install([
 
 ## Rubix's Cube
 
-Together with your group, you are going to create a Rubix Cube application.
+You are going to create a Rubix Cube application.
 
 [Rubix's Cubes](https://en.wikipedia.org/wiki/Rubik%27s_Cube) are a toy with six sides. Each side has nine colored squares on it.
 Players rotate columns and rows on the cube with the goal of having each side with a single matching color.
@@ -25,25 +26,28 @@ Players rotate columns and rows on the cube with the goal of having each side wi
 
 <!-- livebook:{"break_markdown":true} -->
 
-Together with your group you will figure out how to:
+Create a `RubixCube` mix project. Your `RubixCube` project should have the following features:
 
-* represent the Rubix's Cube as data.
-* horizontally rotate a row of the cube to the right and left
-* vertically rotate a column of the cube up and down.
-* determine if a Rubix's Cube is solved.
-* (bonus) Persist the state of a Rubix's Cube to a database using ecto.
-* (bonus) Create a process for each Rubix's Cube. Play with the Rubix's Cube by sending messages
-  to the process (this means multiple people can play with the same Rubix's Cube if they have the pid of the process!)
+### Requirements
 
-If you need clarification of these instructions speak with your teacher. However, keep in mind the goal of this project is to engage your problem solving and decision skills. You should implement features how you and your group think is best. You are free to be creative and take liberties or add new features to this project.
+* Represent the Rubix's Cube as data.
+* Horizontally rotate a row of the cube to the right and left
+* Vertically rotate a column of the cube up and down.
+* Determine if a Rubix's Cube is solved.
+* Save the state of the Rubix Cube using the [File](https://hexdocs.pm/elixir/File.html) system.
 
-Have one person in your group create a new mix project called `rubix`. Add this project to GitHub and add your classmates as collaborators. All group members should clone the project and ensure they can run it.
+### Bonus Feature Ideas
 
-You might consider using [Visual Studio Code Live Share](https://code.visualstudio.com/learn/collaboration/live-share) to collaborate. Alternatively you can screenshare, or collaborate by making pull requests to the same project.
+You may add any additional features that you like. For example:
+
+* Configure the project as a script and retrieve user input using [IO](https://hexdocs.pm/elixir/IO.html).
+* Print the faces of the rubix cube in the terminal with colours using `IO.ANSI`.
+
+If you need clarification of these instructions speak with your teacher. However, keep in mind the goal of this project is to engage your problem solving and decision skills. You should implement features how you think is best. You are free to be creative and take liberties or add new features to this project.
 
 ## Commit Your Progress
 
-Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
+Run the following in your command line from the curriculum folder to track and save your progress in a Git commit.
 Ensure that you do not already have undesired or unrelated changes by running `git status` or by checking the source control tab in Visual Studio Code.
 
 ```
@@ -54,4 +58,16 @@ $ git commit -m "finish rubix cube exercise"
 $ git push origin exercise-rubix_cube
 ```
 
-Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+Create a pull request to your forked `main` branch. Please do not create a pull request to the DockYard Academy repository as this will spam our PR tracker.
+
+**DockYard Academy Students Only:**
+
+Notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+
+If you are interested in joining the next academy cohort, [sign up here](https://academy.dockyard.com/) to receive more news when it is available.
+
+## Up Next
+
+| Previous                                       | Next                                   |
+| ---------------------------------------------- | -------------------------------------: |
+| [File Search](../exercises/file_search.livemd) | [HTML CSS](../reading/html_css.livemd) |

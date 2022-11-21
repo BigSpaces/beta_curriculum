@@ -2,6 +2,7 @@
 
 ```elixir
 Mix.install([
+  {:kino, "~> 0.7.0", override: true},
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"}
 ])
@@ -37,6 +38,8 @@ An HTML element generally includes an opening tag, content, and closing tag.
 <!-- livebook:{"break_markdown":true} -->
 
 Here is a brief overview of HTML by Fireship.
+
+<!-- livebook:{"attrs":{"source":"YouTube.new(\"https://www.youtube.com/watch?v=ok-plXXHlWw\")","title":"Hidden Cell"},"kind":"Elixir.HiddenCell","livebook_object":"smart_cell"} -->
 
 ```elixir
 YouTube.new("https://www.youtube.com/watch?v=ok-plXXHlWw")
@@ -1170,7 +1173,7 @@ For experimenting with HTML and CSS, we recommend sites such as [CodePen](https:
 
 ## Commit Your Progress
 
-Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
+Run the following in your command line from the curriculum folder to track and save your progress in a Git commit.
 Ensure that you do not already have undesired or unrelated changes by running `git status` or by checking the source control tab in Visual Studio Code.
 
 ```
@@ -1181,10 +1184,16 @@ $ git commit -m "finish html css section"
 $ git push origin exercise-html_css
 ```
 
-Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+Create a pull request to your forked `main` branch. Please do not create a pull request to the DockYard Academy repository as this will spam our PR tracker.
+
+**DockYard Academy Students Only:**
+
+Notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+
+If you are interested in joining the next academy cohort, [sign up here](https://academy.dockyard.com/) to receive more news when it is available.
 
 ## Up Next
 
-| Previous                                         | Next                                       |
-| ------------------------------------------------ | -----------------------------------------: |
-| [Sign Up Form](../exercises/sign_up_form.livemd) | [Home Page](../exercises/home_page.livemd) |
+| Previous                                     | Next                                                       |
+| -------------------------------------------- | ---------------------------------------------------------: |
+| [Rubix Cube](../exercises/rubix_cube.livemd) | [Common Components](../exercises/common_components.livemd) |

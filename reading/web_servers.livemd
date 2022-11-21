@@ -2,8 +2,9 @@
 
 ```elixir
 Mix.install([
+  {:kino, "~> 0.7.0", override: true},
   {:youtube, github: "brooklinjazz/youtube"},
-  {:hidden_cell, github: "brooklinjazz/hidden_cell"}
+  {:hidden_cell, github: "brooklinjazz/hidden_cell"},
   {:httpoison, "~> 1.8"}
 ])
 ```
@@ -33,7 +34,7 @@ Also, this lesson relies on port `4000` being free. If you have any programs usi
 
 [Transmission Control Protocol (TCP)](https://en.wikipedia.org/wiki/Transmission_Control_Protocol) is the communication protocol applications use to communicate and exchange data over a network.
 
-We use the built in [`:gen_tcp`](https://www.erlang.org/doc/man/gen_tcp.html) library to from Erlang to start a server that uses TCP to listen for connections on a network.
+We use the built in [`:gen_tcp`](https://www.erlang.org/doc/man/gen_tcp.html) library from Erlang to start a server that uses TCP to listen for connections on a network.
 
 This server creates a **socket** connection on a specified **port** of the machine.
 A port is a communication endpoint for a particular service. For example, by default this livebook application runs on port `8080` which you can see in the URL of your browser, `http://localhost:8080/sessions/`. A socket allows for two way communication over this port to send and receive data.
@@ -172,7 +173,7 @@ Visit http://localhost:4000 to see your modified content. You may need to stop t
 
 ## Commit Your Progress
 
-Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
+Run the following in your command line from the curriculum folder to track and save your progress in a Git commit.
 Ensure that you do not already have undesired or unrelated changes by running `git status` or by checking the source control tab in Visual Studio Code.
 
 ```
@@ -183,7 +184,13 @@ $ git commit -m "finish web servers section"
 $ git push origin exercise-web_servers
 ```
 
-Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+Create a pull request to your forked `main` branch. Please do not create a pull request to the DockYard Academy repository as this will spam our PR tracker.
+
+**DockYard Academy Students Only:**
+
+Notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+
+If you are interested in joining the next academy cohort, [sign up here](https://academy.dockyard.com/) to receive more news when it is available.
 
 ## Up Next
 

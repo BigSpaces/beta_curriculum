@@ -2,6 +2,7 @@
 
 ```elixir
 Mix.install([
+  {:kino, "~> 0.7.0", override: true},
   {:youtube, github: "brooklinjazz/youtube"},
   {:hidden_cell, github: "brooklinjazz/hidden_cell"}
 ])
@@ -42,7 +43,7 @@ The `TrafficLightServer` should also be able to receive a `:current_light` messa
 <!-- livebook:{"force_markdown":true} -->
 
 ```elixir
-{:ok, pid} = GenServer.start_link(TrafficLight, [])
+{:ok, pid} = GenServer.start_link(TrafficLightServer, [])
 
 :green = GenServer.call(pid, :current_light)
 :yellow = GenServer.call(pid, :transition)
@@ -59,12 +60,12 @@ The `TrafficLightServer` should define some [Client API](https://hexdocs.pm/elix
 <!-- livebook:{"force_markdown":true} -->
 
 ```elixir
-{:ok, pid} = TrafficLight.start_link()
+{:ok, pid} = TrafficLightServer.start_link([])
 
-:green = TrafficLight.current_light(pid)
-:yellow = TrafficLight.transition(pid)
-:red = TrafficLight.transition(pid)
-:green = TrafficLight.transition(pid)
+:green = TrafficLightServer.current_light(pid)
+:yellow = TrafficLightServer.transition(pid)
+:red = TrafficLightServer.transition(pid)
+:green = TrafficLightServer.transition(pid)
 ```
 
 <details style="background-color: lightgreen; padding: 1rem; margin: 1rem 0;">
@@ -119,13 +120,14 @@ defmodule TrafficLightServer do
   @moduledoc """
   Documentation for `TrafficLightServer`
   """
+  use GenServer
 
   @doc """
   Start a TrafficLightServer linked to the current caller process.
 
   ## Examples
 
-      iex> TrafficLightServer.start_link()
+      iex> TrafficLightServer.start_link([])
       {:ok, pid}
   """
   def start_link(opts) do
@@ -136,7 +138,7 @@ defmodule TrafficLightServer do
 
   ## Examples
 
-      iex> {:ok, pid} = TrafficLightServer.start_link()
+      iex> {:ok, pid} = TrafficLightServer.start_link([])
       iex> TrafficLightServer.transition(pid)
       :yellow
       iex> TrafficLightServer.transition(pid)
@@ -152,7 +154,7 @@ defmodule TrafficLightServer do
 
   ## Examples
 
-      iex> {:ok, pid} = TrafficLightServer.start_link()
+      iex> {:ok, pid} = TrafficLightServer.start_link([])
       iex> TrafficLightServer.current_light(pid)
       :green
   """
@@ -337,7 +339,7 @@ end
 
 ## Commit Your Progress
 
-Run the following in your command line from the beta_curriculum folder to track and save your progress in a Git commit.
+Run the following in your command line from the curriculum folder to track and save your progress in a Git commit.
 Ensure that you do not already have undesired or unrelated changes by running `git status` or by checking the source control tab in Visual Studio Code.
 
 ```
@@ -348,7 +350,13 @@ $ git commit -m "finish traffic light server exercise"
 $ git push origin exercise-traffic_light_server
 ```
 
-Then create a pull request to your `main` branch and notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+Create a pull request to your forked `main` branch. Please do not create a pull request to the DockYard Academy repository as this will spam our PR tracker.
+
+**DockYard Academy Students Only:**
+
+Notify your teacher by including `@BrooklinJazz` in your PR description to get feedback.
+
+If you are interested in joining the next academy cohort, [sign up here](https://academy.dockyard.com/) to receive more news when it is available.
 
 ## Up Next
 
