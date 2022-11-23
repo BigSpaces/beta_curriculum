@@ -166,6 +166,7 @@ Use [Poison.decode!/2](https://hexdocs.pm/poison/Poison.html#decode!/2) to decod
 
 ```elixir
 string = "{\"hello\"\: \"world\"}"
+Poison.decode!(string)["hello"]
 ```
 
 ### HTTP GET and HTTP POST
@@ -224,9 +225,9 @@ Create a free account on the [Open Weather API](https://openweathermap.org/) and
 Use your API key and valid latitude/longitude coordinates to make a successful request to their API. Ensure the `:status_code` is `200` rather than `401`.
 
 ```elixir
-lat = 35
-lon = 139
-api_key = ""
+lat = 40.633211
+lon = -3.189638
+api_key = "74720f37a1e43c326b1eef4093dfbaf9"
 
 {:ok, response} =
   HTTPoison.get(
@@ -237,7 +238,7 @@ api_key = ""
 Once you are sure the above works correctly, use [Poison.decode/2](https://hexdocs.pm/poison/Poison.html#decode/2) to decode the `response` into an Elixir map.
 
 ```elixir
-response
+Poison.decode!(response)
 ```
 
 ## Commit Your Progress
