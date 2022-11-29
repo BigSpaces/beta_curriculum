@@ -269,7 +269,55 @@ keys = [:title, :content]
 </details>
 
 ```elixir
+# defmodule Person do
+#   @enforce_keys [:name, :age]
+#   defstruct @enforce_keys
 
+#   def new(%{name: name, age: age}) when is_binary(name) and is_integer(age) do
+#     {:ok,
+#      %Person{
+#        name: name,
+#        age: age
+#      }}
+#   end
+
+#   def new(_), do: {:error, :invalid_params}
+# end
+
+# initial_data = %{}
+
+# params = %{name: "Peter", age: 22}
+# types = %{name: :string, age: :integer}
+# keys = [:name, :age]
+# changeset = Ecto.Changeset.cast({initial_data, types}, params, keys)
+
+# invalid_changeset =
+#   {initial_data, types}
+#   |> Ecto.Changeset.cast(params, keys)
+#   |> Ecto.Changeset.validate_required([:username, :password])
+#   |> Ecto.Changeset.validate_length(:password, min: 10)
+#   |> Ecto.Changeset.validate_length(:username, min: 3, max: 40)
+#   |> Ecto.Changeset.validate_acceptance(:terms_and_conditions)
+```
+
+```elixir
+defmodule Book do
+  @enforce_keys [:title, :content]
+  defstruct @enforce_keys
+end
+```
+
+```elixir
+intial_book_data = %{}
+book_params = %{title: "The Meditations", content: "Bunch of written pages"}
+book_types = %{title: :string, content: :string}
+book_keys = [:title, :content]
+
+book_changeset =
+  {intial_book_data, book_types}
+  |> Ecto.Changeset.cast(book_params, book_keys)
+  |> Ecto.Changeset.validate_required([:title, :content])
+  |> Ecto.Changeset.validate_length(:title, min: 3, max: 100)
 ```
 
 ## Schemaless Changesets
@@ -303,7 +351,7 @@ defmodule User do
   end
 end
 
-User.new(%{username: "Peter Parker", password: "secret_spider", terms_and_conditions: true})
+User.new(%{username: "Pr", password: "secret_spider", terms_and_conditions: true})
 ```
 
 ### Your Turn
@@ -350,7 +398,31 @@ end
 </details>
 
 ```elixir
+defmodule Book2 do
+  defstruct [:title, :content, :author, :is_licenced, :is_published]
 
+  @types %{
+    title: :string,
+    content: :string,
+    author: :string,
+    is_licenced: :boolean,
+    is_published: :boolean
+  }
+
+  def changeset(%Book2{} = user, params) do
+    {user, @types}
+    |> Ecto.Changeset.cast(params, Map.keys(@types))
+    |> Ecto.Changeset.validate_required([:title, :content])
+    |> Ecto.Changeset.validate_length(:title, min: 3, max: 100)
+    |> Ecto.Changeset.validate_acceptance(:is_published)
+  end
+
+  def new(params) do
+    %Book2{}
+    |> changeset(params)
+    |> Ecto.Changeset.apply_action(:update)
+  end
+end
 ```
 
 ## Commit Your Progress
