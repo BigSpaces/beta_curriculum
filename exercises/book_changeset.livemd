@@ -117,7 +117,50 @@ You should rely on Ecto Changesets and your own custom validation to validate th
 
 ```elixir
 defmodule Book do
+  @mail_regex ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
+
+  @types %{
+    title: :string,
+    content: :string,
+    published_on: :date,
+    books_sold: :integer,
+    category: :string,
+    publisher_email: :string,
+    author: :string,
+    has_license: :boolean,
+    price: :integer
+  }
+
+  @keys Map.keys(@types)
+
+  defstruct @keys
+
+  def changeset(%Book{} = book, params \\ %{}) do
+    {book, @types}
+    |> Ecto.Changeset.cast(params, Map.keys(@types))
+    |> Ecto.Changeset.validate_required([:title, :content])
+    |> Ecto.Changeset.validate_inclusion(:category, ["action", "fiction", "mystery"])
+    |> Ecto.Changeset.validate_number(:books_sold, greater_than_or_equal_to: 0)
+    |> Ecto.Changeset.validate_format(:publisher_email, @mail_regex)
+    |> Ecto.Changeset.validate_acceptance(:has_license)
+    |> Ecto.Changeset.validate_number(:price, greater_than: 0)
+  end
+
+  def new(params) do
+    %Book{}
+    |> changeset(params)
+    |> Ecto.Changeset.apply_action(:update)
+  end
 end
+```
+
+```elixir
+Book.new(%{
+  has_license: true,
+  title: "My Book Is Awesome",
+  content: "Written pages",
+  publisher_email: "sdfdc"
+})
 ```
 
 ## Commit Your Progress
