@@ -89,8 +89,13 @@ defmodule RockPaperScissorsPatternMatching do
     iex> RockPaperScissorsPatternMatching.play(:rock, :paper)
     "paper beats rock!"
 
+  <<<<<<< HEAD
+    iex> RockPaperScissorsPatternMatching.play(:paper, :rock)
+    "paper beats rock!"
+  =======
     iex> RockPaperScissorsPatternMatching.play(:paper, :scissors)
     "scissors beats paper!"
+  >>>>>>> 14614c144d2d4464c1dbc65ae4525e8e5eb25ac3
 
     iex> RockPaperScissorsPatternMatching.play(:scissors, :rock)
     "rock beats scissors!"
@@ -104,7 +109,48 @@ defmodule RockPaperScissorsPatternMatching do
     iex> RockPaperScissorsPatternMatching.play(:scissors, :scissors)
     "draw!"
   """
+
+  # INPUT: 2 guesses (in atom form)
+  # OUTPUT: A string that declares the outcome of the play
+
+  # 5 ideas
+  # Case / Cond
+  # Use With
+
   def play(guess1, guess2) do
+    with true <- guess1 == guess2 do
+      "draw!"
+    end
+
+    with true <-
+           {:rock, :scissors} == {guess1, guess2} ||
+             {:rock, :scissors} == {guess2, guess1} do
+      "Rock beats scissors"
+    end
+
+    with true <-
+           {:rock, :paper} == {guess1, guess2} ||
+             {:rock, :paper} == {guess2, guess1} do
+      "Paper beats rock"
+    end
+
+    with true <-
+           {:scissors, :paper} == {guess1, guess2} ||
+             {:scissors, :paper} == {guess2, guess1} do
+      "Scissors beats paper"
+    end
+  end
+end
+
+RockPaperScissorsPatternMatching.play(:rock, :rock)
+```
+
+```elixir
+#I am trying to implement a solution that takes in the guesses and evaluates independent
+#of the order they come in. For example (:rock, :paper) provides the same result as (:paper, :rock)
+
+defmodule RPSPM do
+  def play(guess1, guess2) 
   end
 end
 ```

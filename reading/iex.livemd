@@ -274,6 +274,12 @@ helper to clear the console screen.
 iex> clear
 ```
 
+<!-- livebook:{"break_markdown":true} -->
+
+`iex(4)> clear`
+
+`Cannot clear the screen because ANSI escape codes are not enabled on this shell`
+
 ## Further Reading
 
 IEx is generally helpful for experimenting with Elixir code and exploring an existing project or script. For more, consider reading the following:
