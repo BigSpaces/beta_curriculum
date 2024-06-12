@@ -67,7 +67,16 @@ total = 42
 Enter your solution below.
 
 ```elixir
+## My solution
 
+12 / 42 * 100
+
+## Proposed solution... Should we multiply by 100?
+
+actual = 12
+total = 42
+
+actual / total * 100
 ```
 
 ## Rocket Ship
@@ -93,7 +102,10 @@ mass * acceleration
 Enter your solution below.
 
 ```elixir
+mass = 10
+acceleration = 50
 
+force = mass * acceleration
 ```
 
 ## What Do You Tip?
@@ -117,7 +129,10 @@ initial_cost * tip_percent
 Enter your solution below.
 
 ```elixir
+meal = 20
+tip = 0.15
 
+total_cost = meal + meal * tip
 ```
 
 ## Pythagorean Theorum
@@ -141,7 +156,12 @@ a ** 2 + b ** 2
 Enter your solution below.
 
 ```elixir
+## Hmmmm interesting that we resort to an erlang function for this...
 
+a = 4
+b = 10
+
+c2 = a ** 2 + b ** 2
 ```
 
 ## Bonus: Square Root
@@ -161,7 +181,7 @@ c_squared = 116
 Enter your solution below.
 
 ```elixir
-
+c = :math.sqrt(c2)
 ```
 
 ## Commit Your Progress
