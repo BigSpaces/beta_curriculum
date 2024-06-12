@@ -79,7 +79,20 @@ defmodule NumberFinder do
     iex> NumberFinder.smallest([2, 2, 3, 4, 10, 20, -3])
     -3
   """
+
+  ## Input - Output: inputs a list - outputs a number
+  ## Potential solution: go through the list and 
+  ## keep the smallest number found in the accumulator.
+  ## If the current number is smaller than the current accumulator, update the accumulator
+
   def smallest(number_list) do
+    ## Enum.min(number_list) - This works
+    ## Enum.reduce([1, 2, 3], fn(number, acc) -> if number < acc do number end end)
+    Enum.reduce(number_list, 4, fn number, smallest ->
+      if number < smallest do
+        number
+      end
+    end)
   end
 
   @doc """
@@ -97,6 +110,31 @@ defmodule NumberFinder do
   def largest(number_list) do
   end
 end
+
+NumberFinder.smallest([2, 2, 3, 4])
+```
+
+```elixir
+def TestModule
+def smallest(number_list) do
+   Enum.reduce(number_list, smallest, fn number, smallest -> IO.puts(number, smallest) end)
+      #  if number < smallest do  smallest = number end     end)
+   end
+end
+TestModule.smallest([1,2])
+
+
+```
+
+```elixir
+Enum.reduce([1, 2, 3], acc, fn number, acc ->
+  if number < acc do
+    acc = number
+  end
+end)
+
+# numbernumber + acc end)
+# Enum.reduce([1, 2, 3], 0, fn(x, acc) -> x + acc end)
 ```
 
 ## Commit Your Progress
